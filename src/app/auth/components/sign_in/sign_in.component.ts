@@ -5,6 +5,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { AuthService } from "../../services/auth-service";
+import { RouterLink } from "@angular/router";
 
 @Component({
     selector: 'sign-in',
@@ -16,6 +17,7 @@ import { AuthService } from "../../services/auth-service";
         MatInputModule,
         MatButtonModule,
         MatProgressSpinnerModule,
+        RouterLink
     ],
 })
 export class SignIn {
