@@ -3,10 +3,11 @@ import { inject, Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { tap } from "rxjs";
 import { Router } from "@angular/router";
-import { RETRY_ENABLED } from "../../core/interceptors/retry.interceptor";
+import { RETRY_ENABLED } from "../../core/interceptors/error.interceptor";
 import { AuthCredentials } from "../entities/auth_credentials.entity";
 import { SignInCredentials } from "../entities/sign_in_credentials.entity";
 import { AuthUserStore } from "../stores/auth_user.store";
+import { ApiErrorHandler } from "../../error-handler/error_handler";
 
 interface AuthResponse {
     token: string,
@@ -23,17 +24,14 @@ export class AuthService {
 
     public login(credentials: AuthCredentials) {
         return this.http.post<AuthResponse>(`${environment.API_PATH}/site/login`, credentials, {
-            context: new HttpContext().set(RETRY_ENABLED, false),
+            // context: new HttpContext().set(RETRY_ENABLED, false),
         }).pipe(
             tap(
                 {
                     next: (res) => this.handleResponse(res),
-                    error: (err) => {
-                        // // if (err.status === 401) this.notificationService.notifyError('Wrong credentials');
-                        // // else if (err.status === 500) this.notificationService.notifyError('Server is not available right now');
-                        // else { console.log(err) }
-                        console.log(err);
-                    }
+                    // error: (err) => {
+                    //     ApiErrorHandler.handleError(err);
+                    // }
                 }
             )
         );
@@ -46,9 +44,9 @@ export class AuthService {
             tap(
                 {
                     next: (res) => this.handleResponse(res),
-                    error: (err) => {
-                        console.log(err);
-                    }
+                    // error: (err) => {
+                    //     ApiErrorHandler.handleError(err);
+                    // }
                 }
             )
         )
@@ -72,11 +70,9 @@ export class AuthService {
                     sessionStorage.clear();
                     this.router.navigate(['auth'])
                 },
-                error: (err) => {
-                    // if (err.status === 401) this.notificationService.notifyError('Unauthorized');
-                    // else if (err.status === 500) this.notificationService.notifyError('Server is not available right now');
-                    // else { console.log(err) }
-                }
+                // error: (err) => {
+                //     ApiErrorHandler.handleError(err);
+                // }
             })
     }
 }

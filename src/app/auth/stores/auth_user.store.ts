@@ -1,3 +1,6 @@
+import { Injectable } from "@angular/core";
+
+@Injectable({ providedIn: 'root' })
 export class AuthUserStore {
     private user: any = null; //TODO type user
 

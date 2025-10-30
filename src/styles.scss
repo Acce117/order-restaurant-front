@@ -7,6 +7,13 @@
 @use '@angular/material' as mat;
 @use "tailwindcss";
 
+.error-snackbar {
+  @include mat.snack-bar-overrides((
+    container-color: #f44336,
+    supporting-text-color: #ffffff,
+  ));
+}
+
 html {
   @include mat.theme((
     color: (
