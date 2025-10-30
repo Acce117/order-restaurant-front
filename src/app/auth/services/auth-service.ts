@@ -3,10 +3,10 @@ import { inject, Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { tap } from "rxjs";
 import { Router } from "@angular/router";
-// import { NotificationService } from "../../alert/notificationService";
 import { RETRY_ENABLED } from "../../core/interceptors/retry.interceptor";
 import { AuthCredentials } from "../entities/auth_credentials.entity";
 import { SignInCredentials } from "../entities/sign_in_credentials.entity";
+import { AuthUserStore } from "../stores/auth_user.store";
 
 interface AuthResponse {
     token: string,
@@ -15,17 +15,11 @@ interface AuthResponse {
 }
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private user: any = null; //TODO type user
     private http = inject(HttpClient);
     private router = inject(Router);
-    // private notificationService = inject(NotificationService);
+    private authUserStore = inject(AuthUserStore);
 
     returnUrl: string | null = null;
-
-    constructor() {
-        const user = sessionStorage.getItem('user');
-        if (user) this.user = JSON.parse(user);
-    }
 
     public login(credentials: AuthCredentials) {
         return this.http.post<AuthResponse>(`${environment.API_PATH}/site/login`, credentials, {
@@ -64,7 +58,10 @@ export class AuthService {
         sessionStorage.setItem('jwt', res.token);
         sessionStorage.setItem('refresh_jwt', res.refreshToken);
         sessionStorage.setItem('user', JSON.stringify(res.user));
-        this.user = res.user;
+        
+        this.authUserStore.authUser = res.user;
+
+        //TODO rethink this
         this.returnUrl ? this.router.navigate([this.returnUrl]) : this.router.navigate(['']);
     }
 
@@ -81,13 +78,5 @@ export class AuthService {
                     // else { console.log(err) }
                 }
             })
-    }
-
-    public isAuthorized(roleName: string): boolean {
-        return this.user.role === roleName;
-    }
-
-    public isAuthenticated(): boolean {
-        return this.user !== null;
     }
 }
