@@ -10,9 +10,9 @@ export function isAuthorizedGuard(permission: string): CanActivateFn {
         let result: boolean | UrlTree = true;
 
 
-        if(!authService.isAuthorized(permission)) {
-            result = router.parseUrl('forbidden');
-        }
+        // if(!authService.isAuthorized(permission)) {
+        //     result = router.parseUrl('forbidden');
+        // }
 
         return result;
     }
