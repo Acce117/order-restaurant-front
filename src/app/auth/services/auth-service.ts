@@ -15,7 +15,7 @@ interface AuthResponse {
 }
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private user: any = null;
+    private user: any = null; //TODO type user
     private http = inject(HttpClient);
     private router = inject(Router);
     // private notificationService = inject(NotificationService);
@@ -83,17 +83,11 @@ export class AuthService {
             })
     }
 
-    get authUser() {
-        let user = null;
-        if (this.user)
-            user = {
-                ...this.user,
-                role: {
-                    ...this.user.role,
-                    permissions: undefined
-                }
-            };
+    public isAuthorized(roleName: string): boolean {
+        return this.user.role === roleName;
+    }
 
-        return user;
+    public isAuthenticated(): boolean {
+        return this.user !== null;
     }
 }

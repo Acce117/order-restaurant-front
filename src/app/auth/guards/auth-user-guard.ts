@@ -10,7 +10,7 @@ export const authUserGuard: CanActivateFn = (route, state) => {
   
   authService.returnUrl = state.url;
 
-  if(!authService.authUser) {
+  if(!authService.isAuthenticated()) {
     result = router.parseUrl('auth');  
   }
 
