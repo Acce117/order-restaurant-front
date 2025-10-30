@@ -5,7 +5,14 @@ import { tap } from "rxjs";
 import { Router } from "@angular/router";
 // import { NotificationService } from "../../alert/notificationService";
 import { RETRY_ENABLED } from "../../core/interceptors/retry.interceptor";
+import { AuthCredentials } from "../entities/auth_credentials.entity";
+import { SignInCredentials } from "../entities/sign_in_credentials.entity";
 
+interface AuthResponse {
+    token: string,
+    refreshToken: string,
+    user: any
+}
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     private user: any = null;
@@ -20,8 +27,8 @@ export class AuthService {
         if (user) this.user = JSON.parse(user);
     }
 
-    public login(credentials: { email: string, password: string }) {
-        return this.http.post<{ token: string, refreshToken: string, user: any }>(`${environment.API_PATH}/site/login`, credentials, {
+    public login(credentials: AuthCredentials) {
+        return this.http.post<AuthResponse>(`${environment.API_PATH}/site/login`, credentials, {
             context: new HttpContext().set(RETRY_ENABLED, false),
         }).pipe(
             tap(
@@ -38,8 +45,8 @@ export class AuthService {
         );
     }
 
-    public signIn(credentials: { username: string, password: string, email: string }) {
-        return this.http.post<{token: string, refreshToken: string, user: any }>(`${environment.API_PATH}/site/sign-in`, credentials, {
+    public signIn(credentials: SignInCredentials) {
+        return this.http.post<AuthResponse>(`${environment.API_PATH}/site/sign-in`, credentials, {
             context: new HttpContext().set(RETRY_ENABLED, false),
         }).pipe(
             tap(
@@ -53,7 +60,7 @@ export class AuthService {
         )
     }
 
-    private handleResponse(res: { token: string, refreshToken: string, user: any }) {
+    private handleResponse(res: AuthResponse) {
         sessionStorage.setItem('jwt', res.token);
         sessionStorage.setItem('refresh_jwt', res.refreshToken);
         sessionStorage.setItem('user', JSON.stringify(res.user));

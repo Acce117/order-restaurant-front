@@ -6,6 +6,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { AuthService } from "../../services/auth-service";
 import { RouterLink } from "@angular/router";
+import { AuthCredentials } from "../../entities/auth_credentials.entity";
 
 @Component({
     selector: 'login',
@@ -26,14 +27,14 @@ export class Login {
     loading = signal<boolean>(false);
 
     credentials = new FormGroup({
-        email: new FormControl('', { validators: [Validators.required, Validators.email] }),
-        password: new FormControl('', { validators: [Validators.required] })
+        email: new FormControl<string>('', { validators: [Validators.required, Validators.email] }),
+        password: new FormControl<string>('', { validators: [Validators.required] })
     });
 
     onSubmit() {
         this.loading.set(true);
         const subscription = this.authService.login(
-            this.credentials.value as { email: string, password: string },
+            this.credentials.value as  AuthCredentials
         ).subscribe({
             error: () => this.loading.set(false)
         });
