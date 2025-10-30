@@ -1,5 +1,5 @@
-.login {
-    width: 25rem;
+.auth-form {
+    width: 32rem;
     height: 100dvh;
     margin: auto;
     padding: 0 min(5rem, 8%);
@@ -10,6 +10,7 @@
     }
 
 }
+
 .loading_indicator {
     position: absolute;
     top: 0;
@@ -27,8 +28,7 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // align-items: center;
-
+    
     div {
         display: flex;
         justify-content: end;
