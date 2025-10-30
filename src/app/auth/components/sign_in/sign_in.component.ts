@@ -26,19 +26,21 @@ export class SignIn {
     loading = signal<boolean>(false);
 
     credentials = new FormGroup({
-        username: new FormControl('', { validators: [Validators.required]}),
+        username: new FormControl('', { validators: [Validators.required] }),
         email: new FormControl('', { validators: [Validators.required, Validators.email] }),
         password: new FormControl('', { validators: [Validators.required] })
     });
 
     onSubmit() {
-        this.loading.set(true);
-        const subscription = this.authService.login(
-            this.credentials.value as { email: string, password: string },
-        ).subscribe({
-            error: () => this.loading.set(false)
-        });
+        if (!this.credentials.errors) {
+            this.loading.set(true);
+            const subscription = this.authService.signIn(
+                this.credentials.value as { username: string, email: string, password: string },
+            ).subscribe({
+                error: () => this.loading.set(false)
+            });
 
-        this.destroyRef.onDestroy(() => subscription.unsubscribe());
+            this.destroyRef.onDestroy(() => subscription.unsubscribe());
+        }
     }
 }
