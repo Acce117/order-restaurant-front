@@ -1,0 +1,19 @@
+@if(loading()) {
+    <div class="loading_indicator">
+        <mat-spinner></mat-spinner>
+    </div>
+}
+<form class="login" [formGroup]="credentials" (ngSubmit)="onSubmit()">
+    <h1>Login</h1>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [formControlName]="'password'">
+    </mat-form-field>
+    <div>
+        <button matButton="tonal">Login</button>
+    </div>
+</form>
