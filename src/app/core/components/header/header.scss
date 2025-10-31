@@ -1,0 +1,75 @@
+:host {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+
+    border-radius: 10px;
+
+    background-color: var(--mat-sys-secondary-container);
+
+    div {
+        display: flex;
+        align-items: center;
+        gap: 5rem;
+    }
+
+    .title {
+        margin-left: min(7rem, 3%)
+    }
+
+    img {
+        width: 3rem;
+        height: auto;
+        aspect-ratio: 1;
+        object-fit: contain;
+    }
+
+    nav a {
+        margin: 0 10px;
+        color: var(--mat-sys-on-surface);
+    }
+
+    .profile-photo {
+        margin: 0;
+        padding: 0;
+        border: none;
+        display: flex;
+        border-radius: 100%;
+        overflow: hidden;
+    }
+
+    .profile-photo img {
+        width: 3rem;
+        height: auto;
+        aspect-ratio: 1;
+        object-fit: cover;
+        cursor: pointer;
+    }
+
+    .profile-photo {
+        background: none;
+        filter: invert(var(--invert-value));
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-right: min(7rem, 3%);
+    }
+
+    @media only screen and (min-width: 1025px) {
+        .menu {
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: 1024px) {
+
+        nav,
+        .profile-photo {
+            display: none;
+        }
+    }
+}
