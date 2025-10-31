@@ -1,6 +1,6 @@
 import { inject } from "@angular/core";
 import { ActivatedRouteSnapshot, GuardResult, MaybeAsync, Router, RouterStateSnapshot } from "@angular/router";
-import { tap } from "rxjs";
+import { map, tap } from "rxjs";
 import { AuthService } from "../services/auth-service";
 
 export function validTokenGuard (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
@@ -10,6 +10,6 @@ export function validTokenGuard (route: ActivatedRouteSnapshot, state: RouterSta
 
     return authService.isValidJwt(jwt as string)
         .pipe(
-            tap((res) => !res ? router.parseUrl('/auth') : true)
+            map((res) => !res ? router.parseUrl('/auth') : true)
         );
 }
