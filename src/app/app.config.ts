@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authJwtInterceptor } from './auth/interceptors/auth-jwt.interceptor';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
+import { validJwtInterceptor } from './auth/interceptors/valid-jwt.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,7 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideHttpClient(
-      withInterceptors([authJwtInterceptor, errorInterceptor]),
+      withInterceptors([validJwtInterceptor, authJwtInterceptor, errorInterceptor]),
     ),
   ]
 };
