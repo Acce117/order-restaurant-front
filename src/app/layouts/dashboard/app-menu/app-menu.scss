@@ -1,0 +1,32 @@
+@use '@angular/material' as mat;
+
+mat-toolbar {
+  @include mat.list-overrides((
+        
+  ))
+}
+
+h1 {
+  margin: 15px
+}
+
+.divider {
+  padding: 0 15px;
+  margin: 15px 0;
+}
+
+.link_profile {
+  img {
+    background: none;
+    filter: invert(var(--invert-value));
+  }
+}
+
+.log_out {
+  border: none;
+}
+
+span {
+  display: flex;
+  justify-content: start;
+}

@@ -1,0 +1,39 @@
+<mat-nav-list>
+    <h1>AccePay</h1>
+    <a mat-list-item routerLink="profile" class="link_profile">
+        <img matListItemAvatar src="/profile-photo.png" alt="">
+        <p matListItemTitle>Username</p>
+    </a>
+    <div class="divider">
+        <mat-divider></mat-divider>
+    </div>
+    <a mat-list-item matListItemTitle routerLink="users">
+        Users
+        <svg matListItemIcon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-dasharray="28" stroke-dashoffset="28" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="2">
+                <path d="M4 21v-1c0 -3.31 2.69 -6 6 -6h4c3.31 0 6 2.69 6 6v1" stroke-dashoffset="0" />
+                <path d="M12 11c-2.21 0 -4 -1.79 -4 -4c0 -2.21 1.79 -4 4 -4c2.21 0 4 1.79 4 4c0 2.21 -1.79 4 -4 4Z"
+                    stroke-dashoffset="0" />
+            </g>
+        </svg>
+    </a>
+    <div class="divider">
+        <mat-divider></mat-divider>
+    </div>
+
+    <button mat-list-item class="log_out" (click)="logout()">
+        <svg matListItemIcon xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+            <rect width="24" height="24" fill="none" />
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <path
+                    d="M16 5v-1c0 -0.55 -0.45 -1 -1 -1h-9c-0.55 0 -1 0.45 -1 1v16c0 0.55 0.45 1 1 1h9c0.55 0 1 -0.45 1 -1v-1" />
+                <path d="M10 12h11" />
+                <path d="M21 12l-3.5 -3.5M21 12l-3.5 3.5" />
+            </g>
+        </svg>
+        <span matListItemTitle>
+            Log out
+        </span>
+    </button>
+</mat-nav-list>
