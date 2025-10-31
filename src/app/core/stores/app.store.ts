@@ -1,10 +1,11 @@
-import { effect, Injectable, signal } from "@angular/core";
+import { Injectable, signal } from "@angular/core";
 
 @Injectable({ providedIn: 'root' })
 export class AppStore {
     theme = signal<'light_theme' | 'dark_theme'>('dark_theme');
     body = document.querySelector('body');
 
+    previousUrl: string | null = null;
 
     constructor() {
         window.matchMedia('(prefers-color-scheme: dark)')

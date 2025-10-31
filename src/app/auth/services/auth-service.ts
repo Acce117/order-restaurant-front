@@ -1,13 +1,12 @@
-import { HttpClient, HttpContext, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpContext } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { environment } from "../../../environments/environment";
-import { tap } from "rxjs";
 import { Router } from "@angular/router";
+import { tap } from "rxjs";
+import { environment } from "../../../environments/environment";
 import { RETRY_ENABLED } from "../../core/interceptors/error.interceptor";
 import { AuthCredentials } from "../entities/auth_credentials.entity";
 import { SignInCredentials } from "../entities/sign_in_credentials.entity";
 import { AuthUserStore } from "../stores/auth_user.store";
-import { ApiErrorHandler } from "../../error-handler/error_handler";
 
 interface AuthResponse {
     token: string,
@@ -20,20 +19,11 @@ export class AuthService {
     private router = inject(Router);
     private authUserStore = inject(AuthUserStore);
 
-    returnUrl: string | null = null;
-
     public login(credentials: AuthCredentials) {
         return this.http.post<AuthResponse>(`${environment.API_PATH}/site/login`, credentials, {
-            // context: new HttpContext().set(RETRY_ENABLED, false),
+            context: new HttpContext().set(RETRY_ENABLED, false),
         }).pipe(
-            tap(
-                {
-                    next: (res) => this.handleResponse(res),
-                    // error: (err) => {
-                    //     ApiErrorHandler.handleError(err);
-                    // }
-                }
-            )
+            tap((res) => this.handleResponse(res))
         );
     }
 
@@ -41,14 +31,7 @@ export class AuthService {
         return this.http.post<AuthResponse>(`${environment.API_PATH}/site/sign-in`, credentials, {
             context: new HttpContext().set(RETRY_ENABLED, false),
         }).pipe(
-            tap(
-                {
-                    next: (res) => this.handleResponse(res),
-                    // error: (err) => {
-                    //     ApiErrorHandler.handleError(err);
-                    // }
-                }
-            )
+            tap((res) => this.handleResponse(res))
         )
     }
 
@@ -56,23 +39,19 @@ export class AuthService {
         sessionStorage.setItem('jwt', res.token);
         sessionStorage.setItem('refresh_jwt', res.refreshToken);
         sessionStorage.setItem('user', JSON.stringify(res.user));
-        
-        this.authUserStore.authUser = res.user;
 
-        //TODO rethink this
-        this.returnUrl ? this.router.navigate([this.returnUrl]) : this.router.navigate(['']);
+        this.authUserStore.authUser = res.user;
     }
 
     public logout() {
         this.http.delete(`${environment.API_PATH}/site/log_out`)
-            .subscribe({
-                next: () => {
-                    sessionStorage.clear();
-                    this.router.navigate(['auth'])
-                },
-                // error: (err) => {
-                //     ApiErrorHandler.handleError(err);
-                // }
-            })
+            .subscribe(() => {
+                sessionStorage.clear();
+                this.router.navigate(['auth'])
+            });
+    }
+
+    public isValidJwt(jwt: string) {
+        return this.http.post<boolean>(`${environment.API_PATH}/site/valid-token`, { jwt });
     }
 }

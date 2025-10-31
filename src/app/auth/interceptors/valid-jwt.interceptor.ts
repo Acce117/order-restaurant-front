@@ -1,9 +1,10 @@
+import { HttpHandlerFn, HttpRequest } from "@angular/common/http";
 import { inject } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
-import { tap } from "rxjs";
+import { Router } from "@angular/router";
+import { Observable, tap } from "rxjs";
 import { AuthService } from "../services/auth-service";
 
-export const validTokenGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+export function validJwtInterceptor(req: HttpRequest<any>, next: HttpHandlerFn): Observable<boolean> {
     const jwt = sessionStorage.getItem('jwt');
     const router = inject(Router);
     const authService = inject(AuthService);
