@@ -7,6 +7,7 @@ import { AppMenu } from "./app-menu/app-menu";
 @Component({
     selector: 'dashboard',
     templateUrl: './dashboard.template.html',
+    styleUrl: './dashboard.scss',
     imports: [Header, MatSidenavModule, AppMenu, RouterOutlet, MatButtonModule]
 })
 export class Dashboard {
