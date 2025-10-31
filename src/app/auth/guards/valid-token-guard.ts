@@ -1,9 +1,9 @@
 import { inject } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
-import { tap } from "rxjs";
+import { ActivatedRouteSnapshot, CanActivateFn, GuardResult, MaybeAsync, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
+import { map, tap } from "rxjs";
 import { AuthService } from "../services/auth-service";
 
-export const validTokenGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+export function validTokenGuard (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
     const jwt = sessionStorage.getItem('jwt');
     const router = inject(Router);
     const authService = inject(AuthService);
