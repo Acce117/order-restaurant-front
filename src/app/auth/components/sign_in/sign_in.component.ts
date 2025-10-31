@@ -39,7 +39,8 @@ export class SignIn {
     onSubmit() {
         if (!this.credentials.errors) {
             const previousUrl = this.appStore.previousUrl || '';
-            
+            this.appStore.previousUrl = null;
+                       
             this.loading.set(true);
 
             const subscription = this.authService.signIn(
