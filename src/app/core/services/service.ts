@@ -35,7 +35,7 @@ export abstract class Service<T = any> {
         return this.http.post<T>(`${environment.API_PATH}/${this.modulePath}`, data);
     }
 
-    public update(id: string, data: any) {
+    public update(id: number, data: any) {
         return this.http.patch<T>(`${environment.API_PATH}/${this.modulePath}/${id}`, data);
     }
 
