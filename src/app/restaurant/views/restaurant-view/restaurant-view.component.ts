@@ -7,7 +7,8 @@ import { Subject, takeUntil } from "rxjs";
 import { RestaurantService } from "../../services/restaurant.service";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
-import { RestaurantForm } from "../restaurant-form/restaurant-form.component";
+import { CreateRestaurantForm } from "../create-restaurant-form/create-restaurant-form.component";
+import { UpdateRestaurantForm } from "../update-restaurant-form/update-restaurant-form.component";
 
 @Component({
     selector: 'restaurant-view',
@@ -65,15 +66,26 @@ export class RestaurantView {
         this.destroyRef.onDestroy(() => subscriber.unsubscribe());
     }
 
-    openDialog(user?: any) {
+    openCreateDialog() {
         const dialogOptions: MatDialogConfig = {
             width: '400px',
             height: '385px',
             enterAnimationDuration: '100ms',
             exitAnimationDuration: '100ms',
-            data: user ? { user } : null,
         }
 
-        this.dialog.open(RestaurantForm, dialogOptions);
+        this.dialog.open(CreateRestaurantForm, dialogOptions);
+    }
+
+    openUpdateDialog(data: any) {
+        const dialogOptions: MatDialogConfig = {
+            width: '400px',
+            height: '385px',
+            enterAnimationDuration: '100ms',
+            exitAnimationDuration: '100ms',
+            data
+        }
+
+        this.dialog.open(UpdateRestaurantForm, dialogOptions);
     }
 }
