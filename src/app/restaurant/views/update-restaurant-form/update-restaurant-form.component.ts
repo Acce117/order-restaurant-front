@@ -33,7 +33,7 @@ export class UpdateRestaurantForm {
     });
 
     handleSubmit() {
-        this.restaurantService.update(this.data.id!,  this.restaurant.value)
+        this.restaurantService.update(this.data.id!,  this.restaurant.value as Restaurant)
             .subscribe(() => {
                 this.dialogRef.close();
             });
