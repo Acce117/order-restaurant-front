@@ -8,10 +8,19 @@
     <mat-form-field>
         <mat-label>Email</mat-label>
         <input matInput type="email" formControlName="email">
+        @if(credentials.hasError('required', 'email')) {
+            <mat-error>Email is required</mat-error>
+        }
+        @if(credentials.hasError('email', 'email')) {
+            <mat-error>Enter a valid email</mat-error>
+        }
     </mat-form-field>
     <mat-form-field>
         <mat-label>Password</mat-label>
         <input matInput type="password" formControlName="password">
+        @if(credentials.hasError('required', 'password')) {
+            <mat-error>Password is required</mat-error>
+        }
     </mat-form-field>
     <div>
         <a routerLink="/auth/sign-in">Don't you have an account?</a>
