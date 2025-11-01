@@ -36,20 +36,18 @@ export class Login {
     });
 
     onSubmit() {
-        if (!this.credentials.errors) {
-            const previousUrl = this.appStore.previousUrl || '';
-            this.appStore.previousUrl = null;
-            
-            this.loading.set(true);
+        const previousUrl = this.appStore.previousUrl || '';
+        this.appStore.previousUrl = null;
 
-            const subscription = this.authService.login(
-                this.credentials.value as AuthCredentials
-            ).subscribe({
-                next: () => this.router.navigate([previousUrl]),
-                error: () => this.loading.set(false),
-            });
+        this.loading.set(true);
 
-            this.destroyRef.onDestroy(() => subscription.unsubscribe());
-        }
+        const subscription = this.authService.login(
+            this.credentials.value as AuthCredentials
+        ).subscribe({
+            next: () => this.router.navigate([previousUrl]),
+            error: () => this.loading.set(false),
+        });
+
+        this.destroyRef.onDestroy(() => subscription.unsubscribe());
     }
 }
