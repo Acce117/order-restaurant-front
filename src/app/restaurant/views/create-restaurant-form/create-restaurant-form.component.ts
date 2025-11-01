@@ -6,21 +6,21 @@ import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatButtonModule } from "@angular/material/button";
 import { RestaurantService } from "../../services/restaurant.service";
+import { Restaurant } from "../../entities/restaurant";
 
 @Component({
     selector: 'restaurant-form',
-    templateUrl: './restaurant-form.template.html',
-    styleUrl: './restaurant-form.scss',
+    templateUrl: './create-restaurant-form.template.html',
     imports: [
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
         MatDialogModule,
         MatCheckboxModule,
-        MatButtonModule
+        MatButtonModule,
     ]
 })
-export class RestaurantForm {
+export class CreateRestaurantForm {
     dialogRef = inject(MatDialogRef);
     restaurantService = inject(RestaurantService);
 
@@ -31,7 +31,7 @@ export class RestaurantForm {
     });
 
     handleSubmit() {
-        this.restaurantService.create(this.restaurant.value)
+        this.restaurantService.create(this.restaurant.value as Restaurant)
             .subscribe(() => {
                 this.dialogRef.close();
             });

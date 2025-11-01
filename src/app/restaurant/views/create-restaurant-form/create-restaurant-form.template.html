@@ -20,5 +20,5 @@
     </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button matButton="filled" [disabled]="!restaurant.valid">Add restaurant</button>
+    <button matButton="filled" [disabled]="!restaurant.valid" (click)="handleSubmit()">Add restaurant</button>
 </mat-dialog-actions>
