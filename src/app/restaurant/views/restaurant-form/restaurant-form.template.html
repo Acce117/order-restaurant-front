@@ -1,11 +1,12 @@
+<h1 mat-dialog-title>Add new restaurant</h1>
 <mat-dialog-content>
-    <form [formGroup]="restaurant" (ngSubmit)="handleSubmit()">
+    <form [formGroup]="restaurant" (ngSubmit)="handleSubmit()" class="flex flex-col gap-6">
         <mat-form-field>
             <mat-label>Name</mat-label>
             <input matInput type="text" formControlName="name">
 
             @if(restaurant.hasError('required', 'name')) {
-                <mat-error>A name for the restaurant is required</mat-error>
+            <mat-error>A name for the restaurant is required</mat-error>
             }
         </mat-form-field>
         <mat-form-field>
@@ -16,8 +17,8 @@
             <mat-label>Is active</mat-label>
             <mat-checkbox formControlName="active"></mat-checkbox>
         </div>
-        <div>
-            <button matButton="tonal" [disabled]="!restaurant.valid">Add restaurant</button>
-        </div>
     </form>
 </mat-dialog-content>
+<mat-dialog-actions>
+    <button matButton="filled" [disabled]="!restaurant.valid">Add restaurant</button>
+</mat-dialog-actions>

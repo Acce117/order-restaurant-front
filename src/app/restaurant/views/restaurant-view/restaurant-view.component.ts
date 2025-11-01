@@ -68,6 +68,7 @@ export class RestaurantView {
     openDialog(user?: any) {
         const dialogOptions: MatDialogConfig = {
             width: '400px',
+            height: '385px',
             enterAnimationDuration: '100ms',
             exitAnimationDuration: '100ms',
             data: user ? { user } : null,

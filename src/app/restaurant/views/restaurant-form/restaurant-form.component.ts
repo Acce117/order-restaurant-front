@@ -10,6 +10,7 @@ import { RestaurantService } from "../../services/restaurant.service";
 @Component({
     selector: 'restaurant-form',
     templateUrl: './restaurant-form.template.html',
+    styleUrl: './restaurant-form.scss',
     imports: [
         ReactiveFormsModule,
         MatFormFieldModule,
