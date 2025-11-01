@@ -12,7 +12,7 @@ export abstract class Service<T = any> {
     modulePath!: string;
     http = inject(HttpClient);
 
-    public getAll(params: { where?: string; relations?: Array<string>, limit?: number, offset?: number } = {}) {
+    public getAll(params: { where?: any; relations?: Array<string>, limit?: number, offset?: number } = {}) {
         const p = new HttpParams({ fromString: qs.stringify(params) });
 
         return this.http.get<GetAllData<T>>(`${environment.API_PATH}/${this.modulePath}`, { params: p });
