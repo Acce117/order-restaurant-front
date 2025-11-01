@@ -1,14 +1,16 @@
 import { Routes } from '@angular/router';
-import { Dashboard } from './layouts/dashboard/dashboard.component';
 import { AuthView } from './layouts/auth/auth.component';
 import { authRoutes } from './auth/routes/routes';
 import { validTokenGuard } from './auth/guards/valid-token-guard';
+import { Dashboard } from './layouts/dashboard/dashboard.component';
+import { restaurantRoutes } from './restaurant/routes/routes';
 
 export const routes: Routes = [
     {
         path: '',
         component: Dashboard,
-        canActivate: [validTokenGuard]
+        canActivate: [validTokenGuard],
+        children: restaurantRoutes
     },
     {
         path: 'auth',

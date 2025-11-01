@@ -1,0 +1,13 @@
+.add_button{
+    border-radius: 10px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+section.actions {
+    justify-content: space-between;
+}
