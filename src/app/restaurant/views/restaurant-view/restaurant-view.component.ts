@@ -9,6 +9,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { CreateRestaurantForm } from "../create-restaurant-form/create-restaurant-form.component";
 import { UpdateRestaurantForm } from "../update-restaurant-form/update-restaurant-form.component";
+import { Restaurant } from "../../entities/restaurant";
 
 @Component({
     selector: 'restaurant-view',
@@ -18,7 +19,7 @@ import { UpdateRestaurantForm } from "../update-restaurant-form/update-restauran
 })
 export class RestaurantView {
     dialog = inject(MatDialog);
-    data = signal<any[]>([]);
+    data = signal<Restaurant[]>([]);
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     
