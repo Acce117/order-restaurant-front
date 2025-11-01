@@ -19,18 +19,6 @@ export class Table {
 
   columns = input.required<TableColumn[]>();
 
-  // ngAfterViewInit() {
-  //   if (this.paginator) {
-  //     this.dataSource.paginator = this.paginator;
-  //   }
-  // }
-
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (changes['data']?.currentValue) {
-  //     this.data = [...changes['data'].currentValue];
-  //   }
-  // }
-
   displayedColumns = computed(() => {
     const columns = [
       ...this.columns().map((column) => column.name),
