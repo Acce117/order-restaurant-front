@@ -19,10 +19,10 @@ export abstract class Service<T = any> {
     }
 
 
-    public getById(id: string, params: object = {}) {
+    public getById(id: number, params: object = {}) {
         const p = new HttpParams({ fromString: qs.stringify(params) });
 
-        return this.http.get<GetAllData<T>>(`${environment.API_PATH}/${this.modulePath}/${id}`, { params: p });
+        return this.http.get<T>(`${environment.API_PATH}/${this.modulePath}/${id}`, { params: p });
     }
 
     public exists(params: any) {
