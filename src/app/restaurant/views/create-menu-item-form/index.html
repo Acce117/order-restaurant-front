@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Add new menu item</h1>
+<mat-dialog-content>
+    <form [formGroup]="menuItem" (ngSubmit)="handleSubmit()" class="flex flex-col gap-6">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name">
+
+            @if(menuItem.hasError('required', 'name')) {
+            <mat-error>A name for the menu item is required</mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input matInput type="number" formControlName="price" min="0">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Stock</mat-label>
+            <input matInput type="number" formControlName="stock" min="0" pattern="[0-9]*">
+        </mat-form-field>
+        <div>
+            <mat-label>Is active</mat-label>
+            <mat-checkbox formControlName="active"></mat-checkbox>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button matButton="filled" [disabled]="!menuItem.valid" (click)="handleSubmit()">Add menu item</button>
+</mat-dialog-actions>
