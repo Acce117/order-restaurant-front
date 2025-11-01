@@ -1,13 +1,13 @@
 <section class="actions">
     <search-input [(searchEntry)]="searchEntry" (search)="loadData()"></search-input>
-    <button class="add_button" matButton="filled" (click)="openCreateDialog()">Add user +</button>
+    <button class="add_button" matButton="filled" (click)="openCreateDialog()">Add restaurant +</button>
 </section>
 
 <section class="data">
     <app-table [columns]="tableColumns" [data]="data()" [actions]="actions">
         <ng-template #actions let-data="data">
             <div class="actions">
-                <a [routerLink]="['/user', data._id]" mat-icon-button>
+                <a [routerLink]="['/restaurant', data.id]" mat-icon-button>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                         <rect width="24" height="24" fill="none" />
                         <path fill="currentColor"
