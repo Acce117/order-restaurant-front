@@ -11,7 +11,7 @@ import { DialogRef } from "@angular/cdk/dialog";
 
 @Component({
     selector: 'create-menu-item-form',
-    templateUrl: './index.html',
+    templateUrl: './create-menu-item-form.template.html',
     imports: [
         MatDialogModule,
         MatFormFieldModule,

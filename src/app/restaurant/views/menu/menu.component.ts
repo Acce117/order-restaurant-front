@@ -7,7 +7,7 @@ import { Table } from "../../../core/components/table/table";
 import { MenuItemService } from "../../services/menu_item.service";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { Subject, takeUntil } from "rxjs";
-import { CreateMenuItemForm } from "../create-menu-item-form";
+import { CreateMenuItemForm } from "../create-menu-item-form/create-menu-item-form.component";
 import { UpdateMenuItemForm } from "../update-menu-item-form/update-menu-item-form.component";
 
 @Component({
