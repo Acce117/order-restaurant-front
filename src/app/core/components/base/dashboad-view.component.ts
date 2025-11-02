@@ -1,0 +1,65 @@
+import { Component, DestroyRef, inject, signal, Signal, ViewChild } from "@angular/core";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { Subject, Subscription } from "rxjs";
+import { Service } from "../../services/service";
+import { TableColumn } from "../table/types";
+import { DialogBaseForm } from "./form.component";
+import { ComponentType } from "@angular/cdk/portal";
+
+@Component({
+    template: ''
+})
+export class BaseDashboardView<T = any> {
+    dialogRef = inject(MatDialog);
+    data = signal<T[]>([]);
+
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+    service!: Service;
+
+    destroyRef = inject(DestroyRef);
+
+    dialogs: { [key: string]: ComponentType<DialogBaseForm> } = {};
+
+    tableColumns!: TableColumn[];
+
+    resultsLength = signal(0);
+
+    dialogOptions: MatDialogConfig = {};
+    
+    ngAfterViewInit() { this.loadData(); }
+
+    loadData() {
+        const params = this.setParams();
+
+        const subscriber = this.service.getAll(params)
+            .subscribe((res) => {
+                this.data.set(res.data);
+                this.resultsLength.set(res.count);
+            });
+
+        this.onDestroy(subscriber);
+    }
+
+    setParams() {
+        const params: { where?: any, limit?: number, offset?: number } = {
+            limit: this.paginator.pageSize,
+            offset: this.paginator.pageIndex * this.paginator.pageSize,
+        }
+
+        return params;
+    }
+
+    onDestroy(subscriber: Subscription) {
+        this.destroyRef.onDestroy(() => subscriber.unsubscribe());
+    }
+
+    openDialog(scenario: string, data?: T) {
+        if(data) this.dialogOptions.data = data;
+        
+        const dialog = this.dialogs[scenario];
+
+        this.dialogRef.open<DialogBaseForm>(dialog, this.dialogOptions);
+    }
+}

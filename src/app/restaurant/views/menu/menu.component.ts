@@ -1,12 +1,13 @@
-import { Component, DestroyRef, inject, input, signal, ViewChild } from "@angular/core";
+import { Component, inject, input, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
-import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
-import { RouterModule } from "@angular/router";
+import { MatDialogConfig } from "@angular/material/dialog";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { Subject, takeUntil } from "rxjs";
+import { BaseDashboardView } from "../../../core/components/base/dashboad-view.component";
 import { SearchInput } from "../../../core/components/search-input/search-input";
 import { Table } from "../../../core/components/table/table";
+import { MenuItem } from "../../entities/menu_item";
 import { MenuItemService } from "../../services/menu_item.service";
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
-import { Subject, takeUntil } from "rxjs";
 import { CreateMenuItemForm } from "../create-menu-item-form/create-menu-item-form.component";
 import { UpdateMenuItemForm } from "../update-menu-item-form/update-menu-item-form.component";
 
@@ -16,23 +17,21 @@ import { UpdateMenuItemForm } from "../update-menu-item-form/update-menu-item-fo
     imports: [
         SearchInput,
         Table,
-        RouterModule,
         MatPaginatorModule,
         MatButtonModule,
     ],
 })
-export class MenuComponent {
-    dialog = inject(MatDialog);
-    data = signal<any>([]);
+export class MenuComponent extends BaseDashboardView<MenuItem>{
+    override service = inject(MenuItemService);
+    
     restaurantId = input.required<number>()
 
-    @ViewChild(MatPaginator) paginator!: MatPaginator;
+    override dialogs = {
+        update: UpdateMenuItemForm,
+        create: CreateMenuItemForm,
+    };
 
-    menuItemService = inject(MenuItemService);
-
-    destroyRef = inject(DestroyRef);
-
-    tableColumns = [
+    override tableColumns = [
         { name: 'Name', property: 'name' },
         { name: 'Price', property: 'price' },
         { name: 'Stock', property: 'stock' },
@@ -40,62 +39,32 @@ export class MenuComponent {
     ];
     
     searchEntry = signal('');
-    
-    resultsLength = signal(0);
 
     private destroy = new Subject();
 
     constructor() {
-        this.menuItemService.updatedData.pipe(
+        super();
+        this.service.updatedData.pipe(
             takeUntil(this.destroy),
         ).subscribe(() => this.loadData());
     }
 
-    ngAfterViewInit() { this.loadData(); }
-    
-    loadData() {
-        const params: { where?: any, limit?: number, offset?: number } = {
-            limit: this.paginator.pageSize,
-            offset: this.paginator.pageIndex * this.paginator.pageSize,
+    override setParams() {
+        const params = super.setParams()
+
+        return {
+            ...params,
             where: {
-                restaurantId: this.restaurantId()
+                restaurantId: this.restaurantId(),
             }
         }
-
-        // if (this.searchEntry() !== '') {
-        //     params.where = this.searchEntry();
-        // }
-
-        const subscriber = this.menuItemService.getAll(params)
-            .subscribe((res) => {
-                this.data.set(res.data);
-                this.resultsLength.set(res.count);
-            });
-
-        this.destroyRef.onDestroy(() => subscriber.unsubscribe());
-    }
-    
-    openCreateDialog() {
-        const dialogOptions: MatDialogConfig = {
-            width: '400px',
-            height: '485px',
-            enterAnimationDuration: '100ms',
-            exitAnimationDuration: '100ms',
-            data: this.restaurantId()
-        }
-
-        this.dialog.open(CreateMenuItemForm, dialogOptions);
     }
 
-    openUpdateDialog(data: any) {
-        const dialogOptions: MatDialogConfig = {
-            width: '400px',
-            height: '485px',
-            enterAnimationDuration: '100ms',
-            exitAnimationDuration: '100ms',
-            data
-        }
-
-        this.dialog.open(UpdateMenuItemForm, dialogOptions);
+    override dialogOptions: MatDialogConfig = {
+        width: '400px',
+        height: '485px',
+        enterAnimationDuration: '100ms',
+        exitAnimationDuration: '100ms',
+        data: this.restaurantId,
     }
 }

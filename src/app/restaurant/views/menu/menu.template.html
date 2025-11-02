@@ -1,12 +1,12 @@
 <section class="actions flex items-center justify-between">
     <search-input [(searchEntry)]="searchEntry" (search)="loadData()"></search-input>
-    <button class="add_button" matButton="filled" (click)="openCreateDialog()">Add menu item +</button>
+    <button class="add_button" matButton="filled" (click)="openDialog('create')">Add menu item +</button>
 </section>
 
 <section class="data">
     <app-table [columns]="tableColumns" [data]="data()" [actions]="actions">
         <ng-template #actions let-data="data">
-            <button mat-icon-button (click)="openUpdateDialog(data)">
+            <button mat-icon-button (click)="openDialog('update', data)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                     <rect width="24" height="24" fill="none" />
                     <path fill="currentColor"
