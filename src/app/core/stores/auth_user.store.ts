@@ -1,23 +1,41 @@
-import { Injectable } from "@angular/core";
+import { effect, Injectable, signal } from "@angular/core";
 
+interface AuthState {
+    user: {
+        role: string;
+    };
+    token: string;
+    refreshToken: string;
+}
 @Injectable({ providedIn: 'root' })
 export class AuthUserStore {
-    private user: any = null; //TODO type user
+    private authState = signal<AuthState | null>(null); //TODO type user
 
     constructor() {
-        const user = sessionStorage.getItem('user');
-        if (user) this.user = JSON.parse(user);
+        const state = localStorage.getItem('state');
+        if (state) this.authState.set(JSON.parse(state));
+
+        effect(()=>{
+            const authState = this.authState();
+            if(authState)
+                localStorage.setItem('state', JSON.stringify(authState));
+            else localStorage.clear();
+        })
     }
 
-    set authUser(user: any) {
-        this.user = user;
+    set state(user: any) {
+        this.authState.set(user);
     }
 
     public isAuthorized(roleName: string): boolean {
-        return this.user.role === roleName;
+        return this.authState()!.user.role === roleName;
     }
 
     public isAuthenticated(): boolean {
-        return this.user !== null;
+        return this.authState() !== null;
+    }
+
+    public getToken(): string | undefined {
+        return this.authState()?.token;
     }
 }
