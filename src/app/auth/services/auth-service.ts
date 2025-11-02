@@ -6,7 +6,7 @@ import { environment } from "../../../environments/environment";
 import { RETRY_ENABLED } from "../../core/interceptors/error.interceptor";
 import { AuthCredentials } from "../entities/auth_credentials.entity";
 import { SignInCredentials } from "../entities/sign_in_credentials.entity";
-import { AuthUserStore } from "../stores/auth_user.store";
+import { AuthUserStore } from "../../core/stores/auth_user.store";
 
 interface AuthResponse {
     token: string,

@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router, UrlTree } from '@angular/router';
 import { AppStore } from '../../core/stores/app.store';
-import { AuthUserStore } from '../stores/auth_user.store';
+import { AuthUserStore } from '../../core/stores/auth_user.store';
 
 export const authUserGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);

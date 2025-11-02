@@ -1,7 +1,7 @@
 
 import { Directive, effect, inject, input, TemplateRef, ViewContainerRef } from "@angular/core";
 import { AuthService } from "../services/auth-service";
-import { AuthUserStore } from "../stores/auth_user.store";
+import { AuthUserStore } from "../../core/stores/auth_user.store";
 
 @Directive({
     selector: '[appHasRoles]'
