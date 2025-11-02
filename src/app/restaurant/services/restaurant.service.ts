@@ -2,6 +2,7 @@ import { EventEmitter, Injectable } from "@angular/core";
 import { Service } from "../../core/services/service";
 import { Observable, tap } from "rxjs";
 import { Restaurant } from "../entities/restaurant";
+import { environment } from "../../../environments/environment";
 
 @Injectable({ providedIn: 'root' })
 export class RestaurantService extends Service<Restaurant> {
@@ -11,16 +12,19 @@ export class RestaurantService extends Service<Restaurant> {
         super();
         this.modulePath = 'restaurant';
     }
-    
+
     public override create(data: Restaurant): Observable<Restaurant> {
-        return super.create(data).pipe(
-            tap(() => this.updatedData.emit())
-        );
+        return super.create(data)
+            .pipe(tap(() => this.updatedData.emit()));
     }
 
     public override update(id: number, data: Restaurant): Observable<Restaurant> {
-        return super.update(id, data).pipe(
-            tap(() => this.updatedData.emit())
-        );
+        return super.update(id, data)
+            .pipe(tap(() => this.updatedData.emit()));
+    }
+
+    public changeActiveStatus(id: number) {
+        return this.http.patch<Restaurant>(`${environment.API_PATH}/${this.modulePath}/change-active-status/${id}`, {})
+            .subscribe(() => this.updatedData.emit());
     }
 }

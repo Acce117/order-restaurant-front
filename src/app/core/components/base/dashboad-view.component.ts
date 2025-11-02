@@ -1,11 +1,11 @@
-import { Component, DestroyRef, inject, signal, Signal, ViewChild } from "@angular/core";
+import { ComponentType } from "@angular/cdk/portal";
+import { Component, DestroyRef, inject, signal, ViewChild } from "@angular/core";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
-import { Subject, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 import { Service } from "../../services/service";
 import { TableColumn } from "../table/types";
 import { DialogBaseForm } from "./form.component";
-import { ComponentType } from "@angular/cdk/portal";
 
 @Component({
     template: ''
@@ -43,9 +43,10 @@ export class BaseDashboardView<T = any> {
     }
 
     setParams() {
-        const params: { where?: any, limit?: number, offset?: number } = {
+        const params: { where?: any, limit?: number, offset?: number, orderedBy: string[]} = {
             limit: this.paginator.pageSize,
             offset: this.paginator.pageIndex * this.paginator.pageSize,
+            orderedBy: ['id']
         }
 
         return params;

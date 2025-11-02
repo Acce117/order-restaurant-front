@@ -1,4 +1,4 @@
-import { HttpContextToken, HttpEvent, HttpHandlerFn, HttpRequest } from "@angular/common/http";
+import { HttpEvent, HttpHandlerFn, HttpRequest } from "@angular/common/http";
 import { inject } from "@angular/core";
 import { Observable, retry, tap, throwError, timer } from "rxjs";
 import { ApiErrorHandler } from "../../error-handler/error_handler";

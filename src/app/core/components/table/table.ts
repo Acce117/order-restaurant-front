@@ -1,10 +1,9 @@
-import { Component, computed, ContentChild, input, output, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { TableColumn } from './types';
-import { MatButtonModule } from '@angular/material/button';
 import { NgTemplateOutlet } from '@angular/common';
-import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-
+import { Component, computed, ContentChild, input, TemplateRef } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { TableColumn } from './types';
 
 @Component({
   selector: 'app-table',
