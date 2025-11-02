@@ -8,7 +8,11 @@ export interface GetAllData<T = any> {
     data: Array<T>
 }
 
-export abstract class Service<T = any> {
+export interface IService {
+    modulePath: string;
+    http: HttpClient;
+}
+export abstract class Service<T = any> implements IService {
     modulePath!: string;
     http = inject(HttpClient);
 

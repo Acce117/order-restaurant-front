@@ -3,22 +3,34 @@
         <mat-spinner></mat-spinner>
     </div>
 }
-<form class="auth-form" [formGroup]="credentials" (ngSubmit)="onSubmit()">
+<form class="auth-form" [formGroup]="formGroup" (ngSubmit)="handleSubmit()">
     <h1>Sign in</h1>
     <mat-form-field>
         <mat-label>Username</mat-label>
         <input matInput type="text" formControlName="username">
+        @if(formGroup.hasError('required', 'username')) {
+            <mat-error>Username is required</mat-error>
+        }
     </mat-form-field>
     <mat-form-field>
         <mat-label>Email</mat-label>
         <input matInput type="email" formControlName="email">
+        @if(formGroup.hasError('required', 'email')) {
+            <mat-error>Email is required</mat-error>
+        }
+        @if(formGroup.hasError('email', 'email')) {
+            <mat-error>Enter a valid email</mat-error>
+        }
     </mat-form-field>
     <mat-form-field>
         <mat-label>Password</mat-label>
         <input matInput type="password" [formControlName]="'password'">
+        @if(formGroup.hasError('required', 'password')) {
+            <mat-error>Password is required</mat-error>
+        }
     </mat-form-field>
     <div>
         <a routerLink="/auth/login">Do you already have an account?</a>
-        <button matButton="tonal">Sign in</button>
+        <button matButton="tonal" [disabled]="!formGroup.valid">Sign in</button>
     </div>
 </form>

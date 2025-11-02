@@ -7,6 +7,7 @@ import { RETRY_ENABLED } from "../../core/interceptors/error.interceptor";
 import { AuthCredentials } from "../entities/auth_credentials.entity";
 import { SignInCredentials } from "../entities/sign_in_credentials.entity";
 import { AuthUserStore } from "../../core/stores/auth_user.store";
+import { IService } from "../../core/services/service";
 
 interface AuthResponse {
     token: string,
@@ -14,8 +15,10 @@ interface AuthResponse {
     user: any
 }
 @Injectable({ providedIn: 'root' })
-export class AuthService {
-    private http = inject(HttpClient);
+export class AuthService implements IService {
+    modulePath = 'site';
+    http = inject(HttpClient);
+    
     private router = inject(Router);
     private authUserStore = inject(AuthUserStore);
 

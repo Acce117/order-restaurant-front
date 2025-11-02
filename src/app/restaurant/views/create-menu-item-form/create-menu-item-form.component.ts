@@ -1,13 +1,14 @@
+import { DialogRef } from "@angular/cdk/dialog";
 import { Component, inject } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MAT_DIALOG_DATA, MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { MenuItemService } from "../../services/menu_item.service";
-import { MatButtonModule } from "@angular/material/button";
+import { DialogBaseForm } from "../../../core/components/base/form.component";
 import { MenuItem } from "../../entities/menu_item";
-import { DialogRef } from "@angular/cdk/dialog";
+import { MenuItemService } from "../../services/menu_item.service";
 
 @Component({
     selector: 'create-menu-item-form',
@@ -21,12 +22,11 @@ import { DialogRef } from "@angular/cdk/dialog";
         MatButtonModule,
     ]
 })
-export class CreateMenuItemForm {
-    menuItemService = inject(MenuItemService);
-    dialogRef = inject(DialogRef);
+export class CreateMenuItemForm extends DialogBaseForm {
+    override service = inject(MenuItemService);
     restaurantId = inject(MAT_DIALOG_DATA);
 
-    menuItem = new FormGroup({
+    override formGroup = new FormGroup({
         name: new FormControl('', { validators: [Validators.required] }),
         price: new FormControl(0, { validators: [Validators.required, Validators.min(0)] }),
         stock: new FormControl(0, { validators: [Validators.required, Validators.min(0)] }),
@@ -34,8 +34,8 @@ export class CreateMenuItemForm {
         active: new FormControl(false),
     });
 
-    handleSubmit() {
-        this.menuItemService.create(this.menuItem.value as MenuItem)
+    subscribeRequest() {
+        return this.service.create(this.formGroup.value as MenuItem)
             .subscribe(() => {
                 this.dialogRef.close();
             })

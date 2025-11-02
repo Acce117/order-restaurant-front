@@ -8,6 +8,7 @@ import { AuthService } from "../../services/auth-service";
 import { Router, RouterLink } from "@angular/router";
 import { SignInCredentials } from "../../entities/sign_in_credentials.entity";
 import { AppStore } from "../../../core/stores/app.store";
+import { BaseForm } from "../../../core/components/base/form.component";
 
 @Component({
     selector: 'sign-in',
@@ -22,35 +23,31 @@ import { AppStore } from "../../../core/stores/app.store";
         RouterLink
     ],
 })
-export class SignIn {
-    private authService = inject(AuthService);
-    private destroyRef = inject(DestroyRef);
+export class SignIn extends BaseForm {
+    override service = inject(AuthService);
+
     private router = inject(Router);
     private appStore = inject(AppStore);
 
     loading = signal<boolean>(false);
 
-    credentials = new FormGroup({
+    override formGroup = new FormGroup({
         username: new FormControl<string>('', { validators: [Validators.required] }),
         email: new FormControl<string>('', { validators: [Validators.required, Validators.email] }),
         password: new FormControl<string>('', { validators: [Validators.required] })
     });
 
-    onSubmit() {
-        if (!this.credentials.errors) {
-            const previousUrl = this.appStore.previousUrl || '';
-            this.appStore.previousUrl = null;
-                       
-            this.loading.set(true);
+    subscribeRequest() {
+        const previousUrl = this.appStore.previousUrl || '';
+        this.appStore.previousUrl = null;
 
-            const subscription = this.authService.signIn(
-                this.credentials.value as SignInCredentials,
-            ).subscribe({
-                next: () => this.router.navigate([previousUrl]),
-                error: () => this.loading.set(false)
-            });
+        this.loading.set(true);
 
-            this.destroyRef.onDestroy(() => subscription.unsubscribe());
-        }
+        return this.service.signIn(
+            this.formGroup.value as SignInCredentials,
+        ).subscribe({
+            next: () => this.router.navigate([previousUrl]),
+            error: () => this.loading.set(false)
+        });
     }
 }

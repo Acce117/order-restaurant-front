@@ -7,6 +7,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatButtonModule } from "@angular/material/button";
 import { RestaurantService } from "../../services/restaurant.service";
 import { Restaurant } from "../../entities/restaurant";
+import { DialogBaseForm } from "../../../core/components/base/form.component";
 
 @Component({
     selector: 'restaurant-form',
@@ -20,18 +21,17 @@ import { Restaurant } from "../../entities/restaurant";
         MatButtonModule,
     ]
 })
-export class CreateRestaurantForm {
-    dialogRef = inject(MatDialogRef);
-    restaurantService = inject(RestaurantService);
+export class CreateRestaurantForm extends DialogBaseForm {
+    override service = inject(RestaurantService);
 
-    restaurant = new FormGroup({
+    override formGroup = new FormGroup({
         name: new FormControl<string>('', { validators: [Validators.required] }),
         address: new FormControl<string>(''),
         active: new FormControl<boolean>(false),
     });
 
-    handleSubmit() {
-        this.restaurantService.create(this.restaurant.value as Restaurant)
+    subscribeRequest() {
+        return this.service.create(this.formGroup.value as Restaurant)
             .subscribe(() => {
                 this.dialogRef.close();
             });

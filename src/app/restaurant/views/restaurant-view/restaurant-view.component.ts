@@ -38,7 +38,7 @@ export class RestaurantView {
 
     resultsLength = signal(0);
 
-    private destroy = new Subject();
+    private destroy = new Subject<void>();
 
     constructor() {
         this.restaurantService.updatedData.pipe(
@@ -47,6 +47,11 @@ export class RestaurantView {
     }
 
     ngAfterViewInit() { this.loadData(); }
+
+    ngOnDestroy() { 
+        this.destroy.next();
+        this.destroy.complete();
+    }
 
     loadData() {
         const params: { where?: string, limit?: number, offset?: number } = {
