@@ -1,14 +1,17 @@
 import { Routes } from "@angular/router";
 import { RestaurantView } from "../views/restaurant-view/restaurant-view.component";
 import { RestaurantDetails } from "../views/restaurant-details/restaurant-details.component";
+import { isAuthorizedGuard } from "../../auth/guards/is-authorized-guard";
 
 export const restaurantRoutes: Routes = [
     {
         path: 'restaurant',
-        component: RestaurantView
+        component: RestaurantView,
+        canActivate: [isAuthorizedGuard(['admin', 'operator'])]
     },
     {
         path: 'restaurant/:id',
         component: RestaurantDetails,
+        canActivate: [isAuthorizedGuard(['admin', 'operator'])]
     }
 ];

@@ -38,6 +38,7 @@ export class MenuComponent extends BaseDashboardView<MenuItem>{
         { name: 'Is active', property: 'active' },
     ];
     
+    //TODO filter
     searchEntry = signal('');
 
     private destroy = new Subject();

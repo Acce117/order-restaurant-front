@@ -39,6 +39,7 @@ export class RestaurantView extends BaseDashboardView<Restaurant> {
         { name: 'Is active', property: 'active' },
     ]
 
+    //TODO filter
     searchEntry = signal<string>('');
 
     override dialogOptions: MatDialogConfig = {

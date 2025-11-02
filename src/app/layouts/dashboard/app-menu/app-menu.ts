@@ -4,11 +4,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth-service';
+import { AppHasRoles } from "../../../auth/directives/appHasRoles";
 
 
 @Component({
   selector: 'app-menu',
-  imports: [MatListModule, MatIconModule, MatDividerModule, RouterModule],
+  imports: [MatListModule, MatIconModule, MatDividerModule, RouterModule, AppHasRoles],
   templateUrl: './app-menu.html',
   styleUrl: './app-menu.scss'
 })

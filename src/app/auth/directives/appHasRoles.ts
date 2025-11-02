@@ -1,6 +1,5 @@
 
 import { Directive, effect, inject, input, TemplateRef, ViewContainerRef } from "@angular/core";
-import { AuthService } from "../services/auth-service";
 import { AuthUserStore } from "../../core/stores/auth_user.store";
 
 @Directive({
@@ -12,11 +11,13 @@ export class AppHasRoles {
 
     private authUserStore = inject(AuthUserStore);
 
-    role = input.required<string>({ alias: 'appHasRoles'});
+    role = input.required<string[]>({ alias: 'appHasRoles'});
 
     constructor() {
         effect(()=>{
-            const isAuthorized = this.authUserStore.isAuthorized(this.role());
+            const isAuthorized = this.role().find((role) => {
+                return this.authUserStore.isAuthorized(role);
+            })
 
             if(isAuthorized) this.viewContainerRef.createEmbeddedView(this.templateRef);
             else this.viewContainerRef.clear();

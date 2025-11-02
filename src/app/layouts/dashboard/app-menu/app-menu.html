@@ -7,7 +7,7 @@
     <div class="divider">
         <mat-divider></mat-divider>
     </div>
-    <a mat-list-item matListItemTitle routerLink="restaurant">
+    <a mat-list-item matListItemTitle routerLink="restaurant" *appHasRoles="['admin', 'operator']">
         Restaurants
         <svg matListItemIcon xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
             <rect width="512" height="512" fill="none" />

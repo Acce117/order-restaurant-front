@@ -3,7 +3,7 @@
         <img src="/app-icon.png" alt="application icon" width="35px">
     </div>
     <nav>
-        <a matButton="tonal" routerLink="/restaurant">Restaurants</a>
+        <a matButton="tonal" *appHasRoles="['operator', 'admin']" routerLink="/restaurant">Restaurants</a>
     </nav>
 </div>
 <div class="actions">
