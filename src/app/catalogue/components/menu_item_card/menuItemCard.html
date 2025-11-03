@@ -1,0 +1,10 @@
+<mat-card>
+    <mat-card-header>{{ item().name }}</mat-card-header>
+    <img mat-card-image ngSrc="" alt="item image" />
+    <mat-card-content>
+        <div class="flex flex-col justify-start items-start">
+            <p>Price: {{ item().price | currency }}</p>
+            <p>Stock: {{ item().stock }}</p>
+        </div>
+    </mat-card-content>
+</mat-card>

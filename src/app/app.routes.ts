@@ -4,11 +4,19 @@ import { authRoutes } from './auth/routes/routes';
 import { validTokenGuard } from './auth/guards/valid-token-guard';
 import { Dashboard } from './layouts/dashboard/dashboard.component';
 import { restaurantRoutes } from './restaurant/routes/routes';
-import { isAuthorizedGuard } from './auth/guards/is-authorized-guard';
+import { catalogueRoutes } from './catalogue/routes/routes';
+import { Home } from './layouts/home/home';
 
 export const routes: Routes = [
     {
         path: '',
+        component: Home,
+        children: [
+            ...catalogueRoutes
+        ]
+    },
+    {
+        path: 'dashboard',
         component: Dashboard,
         canActivate: [validTokenGuard],
         children: restaurantRoutes

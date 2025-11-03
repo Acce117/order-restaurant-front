@@ -1,0 +1,13 @@
+<section class="grid justify-center gap-8">
+    @for (item of items(); track item.id) {
+    <button class="cursor-pointer border-2 rounded-xl border-transparent 
+        transition 
+        duration-300 
+        origin-center 
+        hover:scale-105 
+        hover:border-blue-100 
+        hover:shadow-md">
+        <menu-item-card [item]="item"></menu-item-card>
+    </button>
+    }
+</section>
