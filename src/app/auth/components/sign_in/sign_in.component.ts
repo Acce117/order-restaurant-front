@@ -13,7 +13,7 @@ import { BaseForm } from "../../../core/components/base/form.component";
 @Component({
     selector: 'sign-in',
     templateUrl: './sing_in.template.html',
-    styleUrl: '../../styles/auth.scss',
+    styleUrl: '../auth.scss',
     imports: [
         ReactiveFormsModule,
         MatFormFieldModule,

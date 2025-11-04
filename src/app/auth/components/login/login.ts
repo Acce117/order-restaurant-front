@@ -21,7 +21,7 @@ import { AuthService } from "../../services/auth-service";
         RouterLink
     ],
     templateUrl: './login.html',
-    styleUrl: '../../styles/auth.scss',
+    styleUrl: '../auth.scss',
 })
 export class Login extends BaseForm {
     override service = inject(AuthService);
