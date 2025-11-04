@@ -2,9 +2,29 @@
     <mat-card-header>{{ item().name }}</mat-card-header>
     <img mat-card-image ngSrc="" alt="item image" />
     <mat-card-content>
-        <div class="flex flex-col justify-start items-start">
+        <div class="flex items-center justify-between w-[100%]">
             <p>Price: {{ item().price | currency }}</p>
-            <p>Stock: {{ item().stock }}</p>
+            @if(!item().stock) {
+            <div class="rounded-xl border-1 border-red-400 bg-red-500 text-white p-1 pr-5 pl-5">
+                Out of stock
+            </div>
+            }
         </div>
     </mat-card-content>
+    <mat-card-actions>
+        <div class="flex justify-end w-[100%]">
+            <button mat-icon-button (click)="cartStore.addToCart(item())" [disabled]="!item().stock">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" d="M5 12h7m7 0h-7m0 0V5m0 7v7" />
+                </svg>
+            </button>
+            <button mat-icon-button (click)="cartStore.addToCart(item())" [disabled]="!item().stock">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" d="M5 12h14" />
+                </svg>
+            </button>
+        </div>
+    </mat-card-actions>
 </mat-card>

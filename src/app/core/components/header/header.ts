@@ -1,19 +1,25 @@
-import { Component, inject, input, output } from "@angular/core";
+import { Component, computed, inject, input, output } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { RouterModule } from "@angular/router";
 import { MatMenuModule } from "@angular/material/menu";
 import { AppStore } from "../../stores/app.store";
 import { AuthService } from "../../../auth/services/auth-service";
-
+import { MatBadgeModule } from "@angular/material/badge";
+import { MatIcon } from "@angular/material/icon";
+import { CartStore } from "../../../orders/store/cartStore";
 @Component({
     selector: 'header[appHeader]',
     templateUrl: './header.html',
     styleUrl: './header.scss',
-    imports: [MatButtonModule, RouterModule, MatMenuModule]
+    imports: [MatButtonModule, RouterModule, MatMenuModule, MatBadgeModule, MatIcon]
 })
 export class Header {
     appStore = inject(AppStore);
     toggleDrawer = output();
+    
+    cartStore = inject(CartStore);
+
+    badgeHidden = computed(() => !this.cartStore.cart());
 
     authService = inject(AuthService);
 
