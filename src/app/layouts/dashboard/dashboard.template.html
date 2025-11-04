@@ -10,7 +10,9 @@
         <app-menu></app-menu>
     </mat-drawer>
     <div class="dashboard">
-        <header class="dashboard_item" appHeader (toggleDrawer)="drawer.toggle()"></header>
+        <header class="dashboard_item" appHeader (toggleDrawer)="drawer.toggle()">
+            <a routerLink="/" mat-menu-item>Home</a>
+        </header>
         <section class="dashboard_item workbench space_container">
             <router-outlet></router-outlet>
         </section>
