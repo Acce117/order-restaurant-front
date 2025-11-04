@@ -4,7 +4,6 @@ import { RouterModule } from "@angular/router";
 import { MatMenuModule } from "@angular/material/menu";
 import { AppStore } from "../../stores/app.store";
 import { AuthService } from "../../../auth/services/auth-service";
-import { AppHasRoles } from "../../../auth/directives/appHasRoles";
 
 @Component({
     selector: 'header[appHeader]',

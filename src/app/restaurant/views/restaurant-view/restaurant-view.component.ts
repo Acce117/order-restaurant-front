@@ -1,17 +1,16 @@
-import { Component, DestroyRef, inject, signal, ViewChild } from "@angular/core";
-import { Table } from "../../../core/components/table/table";
-import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
-import { RouterModule } from "@angular/router";
-import { SearchInput } from "../../../core/components/search-input/search-input";
-import { Subject, takeUntil } from "rxjs";
-import { RestaurantService } from "../../services/restaurant.service";
+import { Component, inject, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { MatDialogConfig } from "@angular/material/dialog";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { RouterModule } from "@angular/router";
+import { Subject, takeUntil } from "rxjs";
+import { BaseDashboardView } from "../../../core/components/base/dashboad-view.component";
+import { SearchInput } from "../../../core/components/search-input/search-input";
+import { Table } from "../../../core/components/table/table";
+import { Restaurant } from "../../entities/restaurant";
+import { RestaurantService } from "../../services/restaurant.service";
 import { CreateRestaurantForm } from "../create-restaurant-form/create-restaurant-form.component";
 import { UpdateRestaurantForm } from "../update-restaurant-form/update-restaurant-form.component";
-import { Restaurant } from "../../entities/restaurant";
-import { DialogBaseForm } from "../../../core/components/base/form.component";
-import { BaseDashboardView } from "../../../core/components/base/dashboad-view.component";
 
 @Component({
     selector: 'restaurant-view',

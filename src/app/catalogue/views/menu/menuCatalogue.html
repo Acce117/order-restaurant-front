@@ -1,12 +1,7 @@
-<section class="grid justify-center gap-8">
+<h1 class="mb-10 mt-10 text-4xl">Taste the best in offer</h1>
+<section>
     @for (item of items(); track item.id) {
-    <button class="cursor-pointer border-2 rounded-xl border-transparent 
-        transition 
-        duration-300 
-        origin-center 
-        hover:scale-105 
-        hover:border-blue-100 
-        hover:shadow-md">
+    <button class="card-item">
         <menu-item-card [item]="item"></menu-item-card>
     </button>
     }
