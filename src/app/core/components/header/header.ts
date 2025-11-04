@@ -1,4 +1,4 @@
-import { Component, inject, output } from "@angular/core";
+import { Component, inject, input, output } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { RouterModule } from "@angular/router";
 import { MatMenuModule } from "@angular/material/menu";
@@ -10,7 +10,7 @@ import { AppHasRoles } from "../../../auth/directives/appHasRoles";
     selector: 'header[appHeader]',
     templateUrl: './header.html',
     styleUrl: './header.scss',
-    imports: [MatButtonModule, RouterModule, MatMenuModule, AppHasRoles]
+    imports: [MatButtonModule, RouterModule, MatMenuModule]
 })
 export class Header {
     appStore = inject(AppStore);
