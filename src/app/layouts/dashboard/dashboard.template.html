@@ -1,12 +1,5 @@
-<mat-drawer-container hasBackdrop="true" class="app-drawer">
-    <mat-drawer #drawer mode="over">
-        <button mat-icon-button (click)="drawer.toggle()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                <rect width="24" height="24" fill="none" />
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 12l7 7M12 12l-7 -7M12 12l-7 7M12 12l7 -7" />
-            </svg>
-        </button>
+<mat-drawer-container class="app-drawer">
+    <mat-drawer #drawer mode="side" opened>
         <app-menu></app-menu>
     </mat-drawer>
     <div class="dashboard">

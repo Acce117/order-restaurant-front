@@ -6,7 +6,7 @@
 
     border-radius: 10px;
 
-    background-color: var(--mat-sys-secondary-container);
+    background-color: var(--mat-sys-surface);
 
     div {
         display: flex;
@@ -57,19 +57,5 @@
         align-items: center;
         gap: 10px;
         margin-right: min(7rem, 3%);
-    }
-
-    @media only screen and (min-width: 1025px) {
-        .menu {
-            display: none;
-        }
-    }
-
-    @media only screen and (max-width: 1024px) {
-
-        nav,
-        .profile-photo {
-            display: none;
-        }
     }
 }

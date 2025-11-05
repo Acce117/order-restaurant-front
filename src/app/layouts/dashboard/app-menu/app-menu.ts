@@ -11,7 +11,7 @@ import { AppHasRoles } from "../../../auth/directives/appHasRoles";
   selector: 'app-menu',
   imports: [MatListModule, MatIconModule, MatDividerModule, RouterModule, AppHasRoles],
   templateUrl: './app-menu.html',
-  styleUrl: './app-menu.scss'
+  styleUrl: './app-menu.scss',
 })
 export class AppMenu {
   authService = inject(AuthService);

@@ -1,15 +1,3 @@
-@use '@angular/material' as mat;
-
-mat-toolbar {
-  @include mat.list-overrides((
-        
-  ))
-}
-
-h1 {
-  margin: 15px
-}
-
 .divider {
   padding: 0 15px;
   margin: 15px 0;

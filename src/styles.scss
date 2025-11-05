@@ -7,6 +7,24 @@
 @use '@angular/material' as mat;
 @use "tailwindcss";
 
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+dashboard {
+  @include mat.sidenav-overrides((
+    container-background-color: var(--mat-sys-primary),
+    container-width: 16rem,
+    container-text-color: white,
+    container-shape: square
+  ));
+}
+
+app-menu {
+  @include mat.list-overrides((
+    list-item-label-text-color: white,
+    list-item-hover-label-text-color: white,
+    list-item-leading-icon-color: white,
+  ));
+}
+
 .error-snackbar {
   @include mat.snack-bar-overrides((
     container-color: #f44336,

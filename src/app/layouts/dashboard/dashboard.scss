@@ -21,12 +21,5 @@
             flex-grow: 2;
             padding: min(3rem, 8%);
         }
-
-        @media only screen and (max-width: 1024px) {
-            aside {
-                display: none;
-            }
-        }
     }
-
 }

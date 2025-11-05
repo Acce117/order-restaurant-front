@@ -1,48 +1,49 @@
-<mat-nav-list>
-    <h1>AccePay</h1>
-    <a mat-list-item routerLink="profile" class="link_profile">
-        <img matListItemAvatar src="/profile-photo.png" alt="">
-        <p matListItemTitle>Username</p>
-    </a>
-    <div class="divider">
-        <mat-divider></mat-divider>
-    </div>
-    <a mat-list-item matListItemTitle routerLink="restaurant" *appHasRoles="['admin', 'operator']">
-        Restaurants
-        <svg matListItemIcon xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
-            <rect width="512" height="512" fill="none" />
-            <path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"
-                d="m57.49 47.74l368.43 368.43a37.28 37.28 0 0 1 0 52.72a37.29 37.29 0 0 1-52.72 0l-90-91.55a32 32 0 0 1-9.2-22.43v-5.53a32 32 0 0 0-9.52-22.78l-11.62-10.73a32 32 0 0 0-29.8-7.44a48.53 48.53 0 0 1-46.56-12.63l-85.43-85.44C40.39 159.68 21.74 83.15 57.49 47.74Z" />
-            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
-                d="m400 32l-77.25 77.25A64 64 0 0 0 304 154.51v14.86a16 16 0 0 1-4.69 11.32L288 192m32 32l11.31-11.31a16 16 0 0 1 11.32-4.69h14.86a64 64 0 0 0 45.26-18.75L480 112m-40-40l-80 80M200 368l-99.72 100.28a40 40 0 0 1-56.56 0h0a40 40 0 0 1 0-56.56L128 328" />
-        </svg>
-    </a>
-    <a mat-list-item matListItemTitle routerLink="restaurant" *appHasRoles="['client']">
-        Orders
-        <svg matListItemIcon xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
-            <rect width="512" height="512" fill="none" />
-            <path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"
-                d="m57.49 47.74l368.43 368.43a37.28 37.28 0 0 1 0 52.72a37.29 37.29 0 0 1-52.72 0l-90-91.55a32 32 0 0 1-9.2-22.43v-5.53a32 32 0 0 0-9.52-22.78l-11.62-10.73a32 32 0 0 0-29.8-7.44a48.53 48.53 0 0 1-46.56-12.63l-85.43-85.44C40.39 159.68 21.74 83.15 57.49 47.74Z" />
-            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
-                d="m400 32l-77.25 77.25A64 64 0 0 0 304 154.51v14.86a16 16 0 0 1-4.69 11.32L288 192m32 32l11.31-11.31a16 16 0 0 1 11.32-4.69h14.86a64 64 0 0 0 45.26-18.75L480 112m-40-40l-80 80M200 368l-99.72 100.28a40 40 0 0 1-56.56 0h0a40 40 0 0 1 0-56.56L128 328" />
-        </svg>
-    </a>
-    <div class="divider">
-        <mat-divider></mat-divider>
-    </div>
+<div class="pt-7">
+    <mat-nav-list>
+        <a mat-list-item routerLink="profile" class="link_profile">
+            <img matListItemAvatar src="/profile-photo.png" alt="">
+            <p matListItemTitle>Username</p>
+        </a>
+        <div class="divider">
+            <mat-divider></mat-divider>
+        </div>
+        <a mat-list-item matListItemTitle routerLink="restaurant" *appHasRoles="['admin', 'operator']">
+            Restaurants
+            <svg matListItemIcon xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+                <rect width="512" height="512" fill="none" />
+                <path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"
+                    d="m57.49 47.74l368.43 368.43a37.28 37.28 0 0 1 0 52.72a37.29 37.29 0 0 1-52.72 0l-90-91.55a32 32 0 0 1-9.2-22.43v-5.53a32 32 0 0 0-9.52-22.78l-11.62-10.73a32 32 0 0 0-29.8-7.44a48.53 48.53 0 0 1-46.56-12.63l-85.43-85.44C40.39 159.68 21.74 83.15 57.49 47.74Z" />
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+                    d="m400 32l-77.25 77.25A64 64 0 0 0 304 154.51v14.86a16 16 0 0 1-4.69 11.32L288 192m32 32l11.31-11.31a16 16 0 0 1 11.32-4.69h14.86a64 64 0 0 0 45.26-18.75L480 112m-40-40l-80 80M200 368l-99.72 100.28a40 40 0 0 1-56.56 0h0a40 40 0 0 1 0-56.56L128 328" />
+            </svg>
+        </a>
+        <a mat-list-item matListItemTitle routerLink="restaurant" *appHasRoles="['client']">
+            Orders
+            <svg matListItemIcon xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+                <rect width="512" height="512" fill="none" />
+                <path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"
+                    d="m57.49 47.74l368.43 368.43a37.28 37.28 0 0 1 0 52.72a37.29 37.29 0 0 1-52.72 0l-90-91.55a32 32 0 0 1-9.2-22.43v-5.53a32 32 0 0 0-9.52-22.78l-11.62-10.73a32 32 0 0 0-29.8-7.44a48.53 48.53 0 0 1-46.56-12.63l-85.43-85.44C40.39 159.68 21.74 83.15 57.49 47.74Z" />
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+                    d="m400 32l-77.25 77.25A64 64 0 0 0 304 154.51v14.86a16 16 0 0 1-4.69 11.32L288 192m32 32l11.31-11.31a16 16 0 0 1 11.32-4.69h14.86a64 64 0 0 0 45.26-18.75L480 112m-40-40l-80 80M200 368l-99.72 100.28a40 40 0 0 1-56.56 0h0a40 40 0 0 1 0-56.56L128 328" />
+            </svg>
+        </a>
+        <div class="divider">
+            <mat-divider></mat-divider>
+        </div>
 
-    <button mat-list-item class="log_out" (click)="logout()">
-        <svg matListItemIcon xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-            <rect width="24" height="24" fill="none" />
-            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                <path
-                    d="M16 5v-1c0 -0.55 -0.45 -1 -1 -1h-9c-0.55 0 -1 0.45 -1 1v16c0 0.55 0.45 1 1 1h9c0.55 0 1 -0.45 1 -1v-1" />
-                <path d="M10 12h11" />
-                <path d="M21 12l-3.5 -3.5M21 12l-3.5 3.5" />
-            </g>
-        </svg>
-        <span matListItemTitle>
-            Log out
-        </span>
-    </button>
-</mat-nav-list>
+        <button mat-list-item class="log_out" (click)="logout()">
+            <svg matListItemIcon xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                <rect width="24" height="24" fill="none" />
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <path
+                        d="M16 5v-1c0 -0.55 -0.45 -1 -1 -1h-9c-0.55 0 -1 0.45 -1 1v16c0 0.55 0.45 1 1 1h9c0.55 0 1 -0.45 1 -1v-1" />
+                    <path d="M10 12h11" />
+                    <path d="M21 12l-3.5 -3.5M21 12l-3.5 3.5" />
+                </g>
+            </svg>
+            <span matListItemTitle>
+                Log out
+            </span>
+        </button>
+    </mat-nav-list>
+</div>
