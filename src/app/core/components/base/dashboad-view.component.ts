@@ -3,20 +3,20 @@ import { Component, DestroyRef, inject, signal, ViewChild } from "@angular/core"
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { Subscription } from "rxjs";
-import { Service } from "../../services/service";
+import { IService, Service } from "../../services/service";
 import { TableColumn } from "../table/types";
 import { DialogBaseForm } from "./form.component";
 
 @Component({
     template: ''
 })
-export class BaseDashboardView<T = any> {
+export abstract class BaseDashboardView<T = any> {
     dialogRef = inject(MatDialog);
     data = signal<T[]>([]);
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-    service!: Service;
+    service!: IService;
 
     destroyRef = inject(DestroyRef);
 
@@ -33,14 +33,12 @@ export class BaseDashboardView<T = any> {
     loadData() {
         const params = this.setParams();
 
-        const subscriber = this.service.getAll(params)
-            .subscribe((res) => {
-                this.data.set(res.data);
-                this.resultsLength.set(res.count);
-            });
-
+        const subscriber = this.getData(params);
         this.onDestroy(subscriber);
     }
+
+
+    abstract getData(params: any): Subscription;
 
     setParams() {
         const params: { where?: any, limit?: number, offset?: number, orderedBy: string[]} = {

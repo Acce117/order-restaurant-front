@@ -6,7 +6,8 @@ import { Dashboard } from './layouts/dashboard/dashboard.component';
 import { restaurantRoutes } from './restaurant/routes/routes';
 import { catalogueRoutes } from './catalogue/routes/routes';
 import { Home } from './layouts/home/home';
-import { CartView } from './orders/views/cartView';
+import { CartView } from './orders/views/cart/cartView';
+import { MyOrders } from './orders/views/my-orders/myOrders';
 
 export const routes: Routes = [
     {
@@ -16,7 +17,7 @@ export const routes: Routes = [
             ...catalogueRoutes,
             {
                 path: 'cart',
-                component: CartView
+                component: CartView,
             },
         ]
     },
@@ -24,7 +25,13 @@ export const routes: Routes = [
         path: 'dashboard',
         component: Dashboard,
         canActivate: [validTokenGuard],
-        children: restaurantRoutes
+        children: [
+            ...restaurantRoutes,
+            {
+                path: 'my-orders',
+                component: MyOrders,
+            }
+        ]
     },
     {
         path: 'auth',

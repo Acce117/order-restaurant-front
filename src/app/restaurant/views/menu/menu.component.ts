@@ -2,7 +2,7 @@ import { Component, inject, input, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogConfig } from "@angular/material/dialog";
 import { MatPaginatorModule } from "@angular/material/paginator";
-import { Subject, takeUntil } from "rxjs";
+import { Subject, Subscription, takeUntil } from "rxjs";
 import { BaseDashboardView } from "../../../core/components/base/dashboad-view.component";
 import { SearchInput } from "../../../core/components/search-input/search-input";
 import { Table } from "../../../core/components/table/table";
@@ -67,5 +67,11 @@ export class MenuComponent extends BaseDashboardView<MenuItem>{
         enterAnimationDuration: '100ms',
         exitAnimationDuration: '100ms',
         data: this.restaurantId,
+    }
+
+    override getData(params: any): Subscription {
+        return this.service.getAll(params).subscribe((res)=>{
+            this.data.set(res.data)
+        })
     }
 }
