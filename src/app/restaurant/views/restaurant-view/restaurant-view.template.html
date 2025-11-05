@@ -7,7 +7,7 @@
     <app-table [columns]="tableColumns" [data]="data()" [actions]="actions">
         <ng-template #actions let-data="data">
             <div class="actions">
-                <a [routerLink]="['/restaurant', data.id]" mat-icon-button>
+                <a [routerLink]="[data.id]" mat-icon-button>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                         <rect width="24" height="24" fill="none" />
                         <path fill="currentColor"
@@ -37,6 +37,6 @@
                 </button>
             </div>
         </ng-template>
-        <mat-paginator [length]="resultsLength()" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" (page)="loadData()" />
     </app-table>
+    <mat-paginator [length]="resultsLength()" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" (page)="loadData()" />
 </section>
