@@ -9,7 +9,7 @@ export function validTokenGuard (route: ActivatedRouteSnapshot, state: RouterSta
     const authUserStore = inject(AuthUserStore);
     const authService = inject(AuthService);
 
-    return authService.isValidJwt(authUserStore.getToken() as string)
+    return authService.isValidJwt(authUserStore.token as string)
         .pipe(
             map((res) => !res ? router.parseUrl('/auth') : true)
         );

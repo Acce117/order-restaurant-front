@@ -1,7 +1,8 @@
 import { MenuItem } from "../../restaurant/entities/menu_item";
 
+export type CartItem = MenuItem & { qty: number };
 export class Cart {
-    items: (MenuItem & { amount: number })[] = [];
+    items: CartItem[] = [];
 
     constructor(readonly restaurantId: number) {}
 }

@@ -2,6 +2,9 @@ import { effect, Injectable, signal } from "@angular/core";
 
 interface AuthState {
     user: {
+        id: number;
+        email: string;
+        username: string;
         role: string;
     };
     token: string;
@@ -15,9 +18,9 @@ export class AuthUserStore {
         const state = localStorage.getItem('state');
         if (state) this.authState.set(JSON.parse(state));
 
-        effect(()=>{
+        effect(() => {
             const authState = this.authState();
-            if(authState)
+            if (authState)
                 localStorage.setItem('state', JSON.stringify(authState));
             else localStorage.clear();
         })
@@ -25,6 +28,10 @@ export class AuthUserStore {
 
     set state(user: any) {
         this.authState.set(user);
+    }
+
+    get user() {
+        return { ...this.authState()?.user };
     }
 
     public isAuthorized(roleName: string): boolean {
@@ -35,7 +42,7 @@ export class AuthUserStore {
         return this.authState() !== null;
     }
 
-    public getToken(): string | undefined {
+    get token(): string | undefined {
         return this.authState()?.token;
     }
 }
