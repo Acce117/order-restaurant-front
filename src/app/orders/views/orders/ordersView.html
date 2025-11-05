@@ -1,0 +1,28 @@
+<section class="flex justify-between items-center">
+    <search-input [(searchEntry)]="searchEntry" (search)="loadData()"></search-input>
+    <button class="add_button" matButton="filled" (click)="openDialog('create')">Add restaurant +</button>
+</section>
+
+<section class="data">
+    <app-table [columns]="tableColumns" [data]="data()" [actions]="actions">
+        <ng-template #actions let-data="data">
+            <div class="flex items-center">
+                <a [routerLink]="[data.id]" mat-icon-button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                        <rect width="24" height="24" fill="none" />
+                        <path fill="currentColor"
+                            d="M12 16q1.875 0 3.188-1.312T16.5 11.5t-1.312-3.187T12 7T8.813 8.313T7.5 11.5t1.313 3.188T12 16m0-1.8q-1.125 0-1.912-.788T9.3 11.5t.788-1.912T12 8.8t1.913.788t.787 1.912t-.787 1.913T12 14.2m0 4.8q-3.35 0-6.113-1.8t-4.362-4.75q-.125-.225-.187-.462t-.063-.488t.063-.488t.187-.462q1.6-2.95 4.363-4.75T12 4t6.113 1.8t4.362 4.75q.125.225.188.463t.062.487t-.062.488t-.188.462q-1.6 2.95-4.362 4.75T12 19m0-2q2.825 0 5.188-1.487T20.8 11.5q-1.25-2.525-3.613-4.012T12 6T6.813 7.488T3.2 11.5q1.25 2.525 3.613 4.013T12 17" />
+                    </svg>
+                </a>
+                <button mat-icon-button (click)="openDialog('update', data)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                        <rect width="24" height="24" fill="none" />
+                        <path fill="currentColor"
+                            d="M10 7h7q.425 0 .713.288T18 8t-.288.713T17 9h-7q-.425 0-.712-.288T9 8t.288-.712T10 7m0 3h7q.425 0 .713.288T18 11t-.288.713T17 12h-7q-.425 0-.712-.288T9 11t.288-.712T10 10m2 10H5zm-6 2q-1.25 0-2.125-.875T3 19v-2q0-.425.288-.712T4 16h2V4q0-.825.588-1.412T8 2h11q.825 0 1.413.588T21 4v6q0 .425-.288.713T20 11t-.712-.288T19 10V4H8v12h3q.425 0 .713.288T12 17t-.288.713T11 18H5v1q0 .425.288.713T6 20h5q.425 0 .713.288T12 21t-.288.713T11 22zm8-1v-1.65q0-.2.075-.387t.225-.338l5.225-5.2q.225-.225.5-.325t.55-.1q.3 0 .575.113t.5.337l.925.925q.2.225.313.5t.112.55t-.1.563t-.325.512l-5.2 5.2q-.15.15-.337.225T16.65 22H15q-.425 0-.712-.287T14 21m7.5-5.575l-.925-.925zm-6 5.075h.95l3.025-3.05l-.45-.475l-.475-.45l-3.05 3.025zm3.525-3.525l-.475-.45l.925.925z" />
+                    </svg>
+                </button>
+            </div>
+        </ng-template>
+    </app-table>
+    <mat-paginator [length]="resultsLength()" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" (page)="loadData()" />
+</section>

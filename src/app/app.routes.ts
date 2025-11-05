@@ -8,6 +8,7 @@ import { catalogueRoutes } from './catalogue/routes/routes';
 import { Home } from './layouts/home/home';
 import { CartView } from './orders/views/cart/cartView';
 import { MyOrders } from './orders/views/my-orders/myOrders';
+import { OrdersView } from './orders/views/orders/ordersView';
 
 export const routes: Routes = [
     {
@@ -30,6 +31,10 @@ export const routes: Routes = [
             {
                 path: 'my-orders',
                 component: MyOrders,
+            },
+            {
+                path: 'orders',
+                component: OrdersView
             }
         ]
     },

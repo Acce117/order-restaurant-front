@@ -1,9 +1,9 @@
-import { Pipe } from "@angular/core";
+import { Pipe, PipeTransform } from "@angular/core";
 
 export interface TableColumn {
     name: string;
     property: string;
-    pipe?: Pipe
+    pipe?: PipeTransform
 }
 export interface Action {
     action: CallableFunction,
