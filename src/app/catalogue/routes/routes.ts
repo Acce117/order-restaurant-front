@@ -6,7 +6,7 @@ export const catalogueRoutes: Routes = [
     { path: '', redirectTo: 'restaurants', pathMatch: 'full'},
     {
         path: 'restaurants',
-        component: RestaurantCatalogue
+        component: RestaurantCatalogue,
     },
     {
         path: 'menu/:id',

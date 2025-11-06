@@ -7,11 +7,11 @@ export const restaurantRoutes: Routes = [
     {
         path: 'restaurant',
         component: RestaurantView,
-        canActivate: [isAuthorizedGuard(['admin', 'operator'])]
+        data: { roles: ['admin', 'operator'] }
     },
     {
         path: 'restaurant/:id',
         component: RestaurantDetails,
-        canActivate: [isAuthorizedGuard(['admin', 'operator'])]
+        data: { roles: ['admin', 'operator'] }
     }
 ];

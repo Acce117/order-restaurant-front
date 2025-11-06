@@ -38,8 +38,7 @@ export class Login extends BaseForm {
 
     subscribeRequest() {
         const previousUrl = this.appStore.previousUrl || '';
-        this.appStore.previousUrl = null;
-
+ 
         this.loading.set(true);
 
         return this.service.login(

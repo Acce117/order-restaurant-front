@@ -7,6 +7,7 @@ import { AuthCredentials } from "../entities/auth_credentials.entity";
 import { SignInCredentials } from "../entities/sign_in_credentials.entity";
 import { AuthUserStore } from "../../core/stores/auth_user.store";
 import { IService } from "../../core/services/service";
+import { AppStore } from "../../core/stores/app.store";
 
 interface AuthResponse {
     token: string,
@@ -17,7 +18,8 @@ interface AuthResponse {
 export class AuthService implements IService {
     modulePath = 'site';
     http = inject(HttpClient);
-    
+    appStore = inject(AppStore);
+
     private router = inject(Router);
     private authUserStore = inject(AuthUserStore);
 
@@ -36,6 +38,7 @@ export class AuthService implements IService {
     public logout() {
         this.http.delete(`${environment.API_PATH}/site/log-out`)
             .subscribe(() => {
+                this.appStore.previousUrl = null;
                 this.authUserStore.state = null;
                 this.router.navigate(['auth'])
             });
