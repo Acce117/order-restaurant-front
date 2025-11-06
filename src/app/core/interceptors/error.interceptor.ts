@@ -4,7 +4,7 @@ import { Observable, retry, tap, throwError, timer } from "rxjs";
 import { ApiErrorHandler } from "../services/errorHandler.service";
 
 const MAX_RETRIES = 2;
-const UNABLE_RETRY_ON_STATUS = [400, 401, 403, 404];
+const UNABLE_RETRY_ON_STATUS = [400, 401, 403, 404, 429];
 
 export function errorInterceptor(req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> {
     let observable = next(req);
