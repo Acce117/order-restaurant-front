@@ -35,6 +35,13 @@ app-menu {
   ));
 }
 
+.success-snackbar {
+  @include mat.snack-bar-overrides((
+    container-color: #43f436,
+    supporting-text-color: #ffffff,
+  ));
+}
+
 html {
   @include mat.theme((
     color: (

@@ -7,12 +7,13 @@ import { AuthService } from "../../../auth/services/auth-service";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatIcon } from "@angular/material/icon";
 import { CartStore } from "../../../orders/store/cartStore";
+import { NotificationComponent } from "../../../notifications/notifications";
 
 @Component({
     selector: 'header[appHeader]',
     templateUrl: './header.html',
     styleUrl: './header.scss',
-    imports: [MatButtonModule, RouterModule, MatMenuModule, MatBadgeModule, MatIcon],
+    imports: [MatButtonModule, RouterModule, MatMenuModule, MatBadgeModule, MatIcon, NotificationComponent],
     host: {
         class: 'shadow-md'
     }

@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AppStore } from './core/stores/app.store';
+import { OrderSocket } from './orders/services/orderSocket.service';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,7 @@ import { AppStore } from './core/stores/app.store';
 })
 export class App {
   appStore = inject(AppStore);
+  orderSocket = inject(OrderSocket);
+  
   protected readonly title = signal('order-restaurant-front');
 }

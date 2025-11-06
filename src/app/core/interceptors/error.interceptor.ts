@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandlerFn, HttpRequest } from "@angular/common/http";
 import { inject } from "@angular/core";
 import { Observable, retry, tap, throwError, timer } from "rxjs";
-import { ApiErrorHandler } from "../../error-handler/error_handler";
+import { ApiErrorHandler } from "../services/errorHandler.service";
 
 const MAX_RETRIES = 2;
 const UNABLE_RETRY_ON_STATUS = [400, 401, 403, 404];
