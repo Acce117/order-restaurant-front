@@ -1,0 +1,26 @@
+<div class="pb-5 flex justify-between items-center w-[100%]">
+    <p class="mb-3">Created at: {{ order()?.createdAt | date }}</p>
+
+    <p class="mb-3 rounded-xl shadow-md px-5 p-3 text-[var(--mat-sys-primary)] text-lg">Total: {{ order()?.total |
+        currency }}</p>
+</div>
+<div class="flex w-[100%] gap-10 sm:flex-row-reverse flex-wrap">
+    <section class="flex flex-col justify-between flex-1 py-5 min-w-[350px] shadow-lg rounded-xl p-4">
+        <div>
+            <p class="mb-3">Client: {{ order()?.customer?.username }}</p>
+            <p class="mb-3">Email: {{ order()?.customer?.email }}</p>
+            <p class="mb-3">Restaurant: {{ order()?.restaurant?.name }}</p>
+            <p class="mb-3">Address: {{ order()?.restaurant?.address}}</p>
+            <p class="mb-3">Status: {{ order()?.status }}</p>
+        </div>
+        @if (order()?.status !== 'canceled' && order()?.status !== 'delivered') {
+            <div class="flex gap-4">
+                <button matButton="filled" class="flex-1" (click)="changeOrderStatus()">{{ nextStatus() }}</button>
+                <button matButton="outlined" class="flex-1" (click)="cancelOrder()">Cancel</button>
+            </div>
+        }
+    </section>
+    <section class="flex-2">
+        <app-table [columns]="tableColumns" [data]="orderItems()"></app-table>
+    </section>
+</div>

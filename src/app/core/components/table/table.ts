@@ -11,7 +11,7 @@ import { TableColumn } from './types';
   templateUrl: './table.html',
 })
 export class Table {
-  data = input.required<any[]>();
+  data = input<any[]>([]);
   actions = input<TemplateRef<any>>();
   @ContentChild(MatPaginator) paginator?: MatPaginator;
 

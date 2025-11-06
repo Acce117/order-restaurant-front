@@ -9,6 +9,7 @@ import { Home } from './layouts/home/home';
 import { CartView } from './orders/views/cart/cartView';
 import { MyOrders } from './orders/views/my-orders/myOrders';
 import { OrdersView } from './orders/views/orders/ordersView';
+import { OrderDetails } from './orders/views/order-details/orderDetails';
 
 export const routes: Routes = [
     {
@@ -35,6 +36,10 @@ export const routes: Routes = [
             {
                 path: 'orders',
                 component: OrdersView
+            },
+            {
+                path: 'orders/:id',
+                component: OrderDetails
             }
         ]
     },
