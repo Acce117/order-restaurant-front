@@ -1,8 +1,12 @@
 <mat-card>
-    <mat-card-header>{{ item().name }}</mat-card-header>
-    <img mat-card-image ngSrc="" alt="item image" />
+    <mat-card-header>
+        <span class="my-5">
+            {{ item().name }}
+        </span>
+    </mat-card-header>
+    <img mat-card-image src="restaurant.webp" alt="item image" />
     <mat-card-content>
-        <div class="flex justify-start">
+        <div class="flex justify-start my-5">
             <span>{{ item().address }}</span>
         </div>
     </mat-card-content>

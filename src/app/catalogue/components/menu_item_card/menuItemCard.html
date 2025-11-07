@@ -1,8 +1,12 @@
 <mat-card>
-    <mat-card-header>{{ item().name }}</mat-card-header>
-    <img mat-card-image ngSrc="" alt="item image" />
+    <mat-card-header>
+        <span class="my-5">
+            {{ item().name }}
+        </span>
+    </mat-card-header>
+    <img mat-card-image src="menu.webp" alt="item image" />
     <mat-card-content>
-        <div class="flex items-center justify-between w-[100%]">
+        <div class="flex items-center justify-between w-[100%] my-5">
             <p>Price: {{ item().price | currency }}</p>
             @if(!item().stock) {
             <div class="rounded-xl border-1 border-red-400 bg-red-500 text-white p-1 pr-5 pl-5">
