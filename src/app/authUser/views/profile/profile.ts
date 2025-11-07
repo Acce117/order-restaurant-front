@@ -7,7 +7,7 @@ import { NgOptimizedImage } from "@angular/common";
 @Component({
     selector: 'user-profile',
     templateUrl: './profile.html',
-    imports: [MatInputModule, MatButtonModule, NgOptimizedImage],
+    imports: [MatInputModule, MatButtonModule],
 })
 export class UserProfile {
     authUserStore = inject(AuthUserStore);

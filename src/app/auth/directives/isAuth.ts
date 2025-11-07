@@ -1,0 +1,21 @@
+
+import { Directive, effect, inject, TemplateRef, ViewContainerRef } from "@angular/core";
+import { AuthUserStore } from "../../core/stores/auth_user.store";
+
+@Directive({
+    selector: '[isAuth]'
+})
+export class AppHasRoles {
+    private templateRef = inject(TemplateRef);
+    private viewContainerRef = inject(ViewContainerRef);
+
+    private authUserStore = inject(AuthUserStore);
+
+    constructor() {
+        effect(()=>{
+            const isAuth = this.authUserStore.isAuthenticated();
+            if(isAuth) this.viewContainerRef.createEmbeddedView(this.templateRef);
+            else this.viewContainerRef.clear();
+        })
+    }
+}

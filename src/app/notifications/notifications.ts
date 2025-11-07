@@ -20,6 +20,10 @@ export class NotificationComponent {
     notificationsCount = computed(() => this.notifications().length);
     dialog = inject(MatDialog);
 
+    ngOnInit() {
+        this.notificationsStore.loadNotifications();
+    }
+
     openNotificationDialog(notification: Notification) {
         this.dialog.open(NotificationDialog, {
             width: '400px',

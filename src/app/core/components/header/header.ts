@@ -8,12 +8,13 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { MatIcon } from "@angular/material/icon";
 import { CartStore } from "../../../orders/store/cartStore";
 import { NotificationComponent } from "../../../notifications/notifications";
+import { AppHasRoles } from "../../../auth/directives/isAuth";
 
 @Component({
     selector: 'header[appHeader]',
     templateUrl: './header.html',
     styleUrl: './header.scss',
-    imports: [MatButtonModule, RouterModule, MatMenuModule, MatBadgeModule, MatIcon, NotificationComponent],
+    imports: [MatButtonModule, RouterModule, MatMenuModule, MatBadgeModule, MatIcon, NotificationComponent, AppHasRoles],
     host: {
         class: 'shadow-md'
     }

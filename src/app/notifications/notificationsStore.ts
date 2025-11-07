@@ -11,10 +11,6 @@ export class NotificationsStore {
     client = inject(HttpClient);
     notificationsService = inject(NotificationsService);
 
-    constructor() {
-        this.loadNotifications()
-    }
-
     loadNotifications() {
         this.notificationsService.getAll().subscribe(
             (res) => { this.notifications.set(res) }
