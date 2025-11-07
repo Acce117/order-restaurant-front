@@ -23,11 +23,11 @@ export const routes: Routes = [
                 canActivate: [validTokenGuard],
                 children: [
                     ...catalogueRoutes,
-                    {
-                        path: 'cart',
-                        component: CartView,
-                    },
                 ]
+            },
+            {
+                path: 'cart',
+                component: CartView,
             },
         ]
     },

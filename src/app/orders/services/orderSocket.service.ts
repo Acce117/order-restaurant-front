@@ -15,8 +15,8 @@ export class OrderSocket {
             auth: { userId: this.authUserStore.user.id }
         });
 
-        this.socket.on('order-status', (data: string)=>{
-            this.notificationsStore.pushNotification({ message: data });
+        this.socket.on('order-status', (data: { message: string })=>{
+            this.notificationsStore.pushNotification(data);
         })
     }
 }

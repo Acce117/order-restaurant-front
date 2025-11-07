@@ -1,7 +1,7 @@
 <h1 class="mb-10 mt-10 text-4xl">Search for the most famous restaurants</h1>
 <section>
     @for (item of items(); track item.id) {
-    <a [routerLink]="`/menu/${item.id}`" class="card-item">
+    <a [routerLink]="`/catalogue/menu/${item.id}`" class="card-item">
         <restaurant-card [item]="item"></restaurant-card>
     </a>
     }

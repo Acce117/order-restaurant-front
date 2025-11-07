@@ -12,7 +12,7 @@
 <mat-menu #menu="matMenu">
     @if (notifications().length > 0) {
         @for (message of notifications(); track $index) {
-            <button mat-menu-item (click)="openNotificationDialog(message)">{{ message }}</button>
+            <button mat-menu-item (click)="openNotificationDialog(message)">{{ message.message }}</button>
         }
     }
     @else {

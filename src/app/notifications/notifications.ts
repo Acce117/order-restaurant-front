@@ -3,9 +3,10 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatBadgeModule } from "@angular/material/badge";
-import { Notification, NotificationsStore } from "./notificationsStore";
+import { NotificationsStore } from "./notificationsStore";
 import { MatDialog } from "@angular/material/dialog";
 import { NotificationDialog } from "./views/notificationDialog";
+import { Notification } from "./entity/notification";
 
 @Component({
     selector: 'notification',
