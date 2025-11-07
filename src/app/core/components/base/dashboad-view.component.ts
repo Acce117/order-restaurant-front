@@ -41,7 +41,13 @@ export abstract class BaseDashboardView<T = any> {
     abstract getData(params: any): Subscription;
 
     setParams() {
-        const params: { where?: any, limit?: number, offset?: number, orderedBy: string[]} = {
+        const params: { 
+            relations?: string[],
+            where?: any, 
+            limit?: number, 
+            offset?: number, 
+            orderedBy?: string[]
+        } = {
             limit: this.paginator.pageSize,
             offset: this.paginator.pageIndex * this.paginator.pageSize,
             orderedBy: ['id']

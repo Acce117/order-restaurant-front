@@ -23,8 +23,8 @@ export class OrdersView extends BaseDashboardView {
     override tableColumns: TableColumn[] = [
         { name: 'Total', property: 'total' },
         { name: 'Created at', property: 'createdAt', pipe: new DatePipe('en-Us') },
-        { name: 'Restaurant', property: 'restaurantId' },
-        { name: 'Customer', property: 'customerId' },
+        { name: 'Restaurant', property: 'restaurant' },
+        { name: 'Customer', property: 'customer' },
         { name: 'Status', property: 'status' },
     ]
 
@@ -42,9 +42,26 @@ export class OrdersView extends BaseDashboardView {
         this.destroy.complete();
     }
 
+    override setParams() {
+        const params = super.setParams();
+
+        return {
+            relations: ['customer', 'restaurant'],
+            ...params,
+        };
+    }
+
     override getData(params: any): Subscription {
         return this.service.getAll(params).subscribe((res) => {
-            this.data.set(res.data);
+            const data = res.data.map(e => (
+                {
+                    ...e,
+                    customer: e.customer.username,
+                    restaurant: e.restaurant.name
+                }
+            ));
+            
+            this.data.set(data);
         })
     }
 }
