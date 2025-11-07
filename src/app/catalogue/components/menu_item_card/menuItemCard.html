@@ -11,7 +11,7 @@
             }
         </div>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions *isAuth>
         <div class="flex justify-end w-[100%]">
             <button mat-icon-button (click)="cartStore.addToCart(item())" [disabled]="!item().stock">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">

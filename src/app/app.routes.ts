@@ -18,9 +18,9 @@ export const routes: Routes = [
         path: '',
         component: Home,
         children: [
+            { path: '', redirectTo: 'catalogue', pathMatch: 'full'},
             {
                 path: 'catalogue',
-                canActivate: [validTokenGuard],
                 children: [
                     ...catalogueRoutes,
                 ]
