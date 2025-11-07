@@ -6,7 +6,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { TableColumn } from "../../../core/components/table/types";
 import { MatButtonModule } from "@angular/material/button";
 import { Subject, Subscription, takeUntil } from "rxjs";
-import { ClientService } from "../../services/client.service";
+import { ClientService } from "../../servcices/client.service";
 
 @Component({
     selector: 'my-orders',

@@ -7,10 +7,11 @@ import { restaurantRoutes } from './restaurant/routes/routes';
 import { catalogueRoutes } from './catalogue/routes/routes';
 import { Home } from './layouts/home/home';
 import { CartView } from './orders/views/cart/cartView';
-import { MyOrders } from './orders/views/my-orders/myOrders';
 import { OrdersView } from './orders/views/orders/ordersView';
 import { OrderDetails } from './orders/views/order-details/orderDetails';
 import { isAuthorizedGuard } from './auth/guards/is-authorized-guard';
+import { MyOrders } from './authUser/views/my-orders/myOrders';
+import { UserProfile } from './authUser/views/profile/profile';
 
 export const routes: Routes = [
     {
@@ -27,7 +28,7 @@ export const routes: Routes = [
                         component: CartView,
                     },
                 ]
-            }
+            },
         ]
     },
     {
@@ -51,6 +52,10 @@ export const routes: Routes = [
                 path: 'orders/:id',
                 component: OrderDetails,
                 data: { roles: ['operator', 'admin'] }
+            },
+            {
+                path: 'profile',
+                component: UserProfile
             }
         ]
     },
