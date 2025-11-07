@@ -9,6 +9,7 @@ import { MatIcon } from "@angular/material/icon";
 import { CartStore } from "../../../orders/store/cartStore";
 import { NotificationComponent } from "../../../notifications/notifications";
 import { AppHasRoles } from "../../../auth/directives/isAuth";
+import { AuthUserStore } from "../../stores/auth_user.store";
 
 @Component({
     selector: 'header[appHeader]',
@@ -22,7 +23,7 @@ import { AppHasRoles } from "../../../auth/directives/isAuth";
 export class Header {
     appStore = inject(AppStore);
     toggleDrawer = output();
-    
+    authUserStore = inject(AuthUserStore);
     cartStore = inject(CartStore);
 
     badgeHidden = computed(() => !this.cartStore.cart());

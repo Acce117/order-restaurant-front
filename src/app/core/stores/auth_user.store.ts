@@ -12,7 +12,7 @@ interface AuthState {
 }
 @Injectable({ providedIn: 'root' })
 export class AuthUserStore {
-    private authState = signal<AuthState | null>(null); //TODO type user
+    private authState = signal<AuthState | null>(null);
 
     constructor() {
         const state = localStorage.getItem('state');
@@ -26,7 +26,7 @@ export class AuthUserStore {
         })
     }
 
-    set state(user: any) {
+    set state(user: AuthState | null) {
         this.authState.set(user);
     }
 

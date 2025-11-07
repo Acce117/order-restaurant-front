@@ -32,6 +32,7 @@
         </mat-icon>
     </a>
     <notification *isAuth></notification>
+    @if (authUserStore.isAuthenticated()) {
     <button class="profile-photo" [matMenuTriggerFor]="menu">
         <img src="profile-photo.png" alt="">
     </button>
@@ -40,4 +41,8 @@
         <ng-content></ng-content>
         <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
+    }
+    @else {
+    <a routerLink="/auth" matButton="tonal">Log in</a>
+    }
 </div>
