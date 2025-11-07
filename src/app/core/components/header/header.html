@@ -1,23 +1,5 @@
 <div class="ml-[min(7rem,3%)]">
-    <button class="menu" mat-icon-button (click)="toggleDrawer.emit()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <g fill="none" stroke="currentColor" stroke-dasharray="16" stroke-dashoffset="16" stroke-linecap="round"
-                stroke-linejoin="round" stroke-width="2">
-                <path d="M5 5h14">
-                    <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.2s" values="16;0" />
-                </path>
-                <path d="M5 12h14">
-                    <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.2s" dur="0.2s" values="16;0" />
-                </path>
-                <path d="M5 19h14">
-                    <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.4s" dur="0.2s" values="16;0" />
-                </path>
-            </g>
-        </svg>
-    </button>
-    <!-- <div>
-        <img src="/app-icon.png" alt="application icon" width="35px">
-    </div> -->
+    <ng-content select="#left-side"></ng-content>
     <nav>
         <a routerLink="catalogue" matButton="text">Catalogue</a>
     </nav>
@@ -38,7 +20,7 @@
     </button>
     <mat-menu #menu="matMenu">
         <a routerLink="/dashboard/profile" mat-menu-item>Profile</a>
-        <ng-content></ng-content>
+        <ng-content select="#menu"></ng-content>
         <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
     }

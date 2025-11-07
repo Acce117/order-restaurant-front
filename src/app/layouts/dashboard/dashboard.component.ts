@@ -5,6 +5,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { AppMenu } from "./app-menu/app-menu";
 import { MatMenuItem } from "@angular/material/menu";
+import { CdkNoDataRow } from "@angular/cdk/table";
 @Component({
     selector: 'dashboard',
     templateUrl: './dashboard.template.html',

@@ -22,7 +22,7 @@ import { AuthUserStore } from "../../stores/auth_user.store";
 })
 export class Header {
     appStore = inject(AppStore);
-    toggleDrawer = output();
+    // toggleDrawer = output();
     authUserStore = inject(AuthUserStore);
     cartStore = inject(CartStore);
 
