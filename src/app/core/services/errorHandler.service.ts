@@ -1,14 +1,14 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from "@angular/router";
 import { MessageService } from "./message.service";
+import { AuthUserStore } from "../stores/auth_user.store";
 
 @Injectable({ providedIn: 'root' })
 export class ApiErrorHandler {
     private router = inject(Router);
-    private snackBar = inject(MatSnackBar);
     private messageService = inject(MessageService);
+    private authUserStore = inject(AuthUserStore);
 
     
     handleError(error: HttpErrorResponse): void {
@@ -20,7 +20,9 @@ export class ApiErrorHandler {
             }
         );
         
-        if([401, 403].includes(error.status))
+        if([401, 403].includes(error.status)) {
+            this.authUserStore.state = null;
             this.router.navigate(['/auth']);
+        }
     }
 }
