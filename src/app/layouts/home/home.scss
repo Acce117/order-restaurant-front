@@ -1,0 +1,10 @@
+section {
+    height: 100dvh;
+    overflow: auto;
+    scrollbar-width: none;
+    display: block;
+    background-image: url('/wave.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 0 50px;
+}

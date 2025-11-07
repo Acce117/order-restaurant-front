@@ -1,3 +1,7 @@
+h1 {
+    font-size: clamp(1.8rem, calc(7vw + 1rem), 2rem)
+}
+
 section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minMax(300px, 1fr));
