@@ -1,4 +1,6 @@
 <section class="flex justify-between items-center">
+    <search-input [(searchEntry)]="restaurantFilter" (search)="loadData()"></search-input>
+
     <button class="add_button" matButton="filled" (click)="openDialog('create')">Add restaurant +</button>
 </section>
 

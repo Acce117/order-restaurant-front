@@ -8,16 +8,22 @@ import { TableColumn } from "../../../core/components/table/types";
 import { OrderService } from "../../services/order.service";
 import { MatButtonModule } from "@angular/material/button";
 import { CurrencyPipe, DatePipe, formatDate } from "@angular/common";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
+import { SearchInput } from "../../../core/components/search-input/search-input";
 
 @Component({
     selector: 'orders',
     templateUrl: './ordersView.html',
-    imports: [Table, RouterModule, MatPaginatorModule, MatButtonModule],
+    imports: [Table, RouterModule, MatPaginatorModule, MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SearchInput],
 })
 export class OrdersView extends BaseDashboardView {
     override service = inject(OrderService);
 
     private destroy = new Subject<void>();
+
+    restaurantFilter = signal('');
 
     override tableColumns: TableColumn[] = [
         { name: 'Total', property: 'total', pipe: new CurrencyPipe('en-Us') },
@@ -40,12 +46,21 @@ export class OrdersView extends BaseDashboardView {
     }
 
     override setParams() {
-        const params = super.setParams();
+        let params = super.setParams();
 
-        return {
+        params = {
             relations: ['customer', 'restaurant'],
             ...params,
         };
+
+        if (this.restaurantFilter() !== '')
+            params.where = {
+                restaurant: {
+                    name: this.restaurantFilter()
+                }
+            }
+
+        return params;
     }
 
     override getData(params: any): Subscription {
@@ -57,7 +72,7 @@ export class OrdersView extends BaseDashboardView {
                     restaurant: e.restaurant.name
                 }
             ));
-            
+
             this.data.set(data);
             this.resultsLength.set(res.count);
         })
