@@ -16,7 +16,7 @@
     <notification *isAuth></notification>
     @if (authUserStore.isAuthenticated()) {
     <button class="profile-photo" [matMenuTriggerFor]="menu">
-        <img src="profile-photo.png" alt="">
+        <img src="profile-icon.png" alt="">
     </button>
     <mat-menu #menu="matMenu">
         <a routerLink="/dashboard/profile" mat-menu-item>Profile</a>

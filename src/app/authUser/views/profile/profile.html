@@ -1,17 +1,19 @@
-<section class="user-profile">
-    <div class="flex flex-col gap-5">
-        <img src="" alt="Profile photo">
-        <label for="">
-            Name:
-            <span>{{ user.username }}</span>
-        </label>
-        <label for="">
-            Email:
-            <span>{{ user.email }}</span>
-        </label>
-        <label for="">
-            Role:
-            <span>{{ user.role }}</span>
-        </label>
+<section class="user-profile shadow-lg rounded-xl p-10 h-[100%]">
+    <div class="flex items-center gap-10 flex-wrap justify-center sm:justify-start">
+        <img src="profile-icon.png" alt="Profile photo">
+        <div class="flex flex-col gap-5">
+            <label for="">
+                Name:
+                <span>{{ user.username }}</span>
+            </label>
+            <label for="">
+                Email:
+                <span>{{ user.email }}</span>
+            </label>
+            <label for="">
+                Role:
+                <span>{{ user.role }}</span>
+            </label>
+        </div>
     </div>
 </section>
