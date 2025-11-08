@@ -12,9 +12,12 @@ export class AppHasRoles {
     private authUserStore = inject(AuthUserStore);
 
     constructor() {
-        effect(()=>{
+        effect(() => {
             const isAuth = this.authUserStore.isAuthenticated();
-            if(isAuth) this.viewContainerRef.createEmbeddedView(this.templateRef);
+            if (isAuth) {
+                if (this.viewContainerRef.length === 0)
+                    this.viewContainerRef.createEmbeddedView(this.templateRef);
+            }
             else this.viewContainerRef.clear();
         })
     }

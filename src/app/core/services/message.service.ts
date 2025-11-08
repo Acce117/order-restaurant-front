@@ -3,7 +3,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { ErrorMessage } from "../components/messages/error_message.component";
 import { SuccessMessage } from "../components/messages/success_message.component";
 
-interface MessageOptions {
+export interface MessageOptions {
     type: 'error' | 'success';
     message: string;
 }

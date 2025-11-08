@@ -1,4 +1,4 @@
-import { HttpClient, HttpContext } from "@angular/common/http";
+import { HttpClient, HttpContext, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { tap } from "rxjs";
@@ -8,6 +8,7 @@ import { SignInCredentials } from "../entities/sign_in_credentials.entity";
 import { AuthUserStore } from "../../core/stores/auth_user.store";
 import { IService } from "../../core/services/service";
 import { AppStore } from "../../core/stores/app.store";
+import { REFRESHING_TOKEN } from "../interceptors/auth-jwt.interceptor";
 
 interface AuthResponse {
     token: string,
@@ -46,5 +47,12 @@ export class AuthService implements IService {
 
     public isValidJwt(jwt: string) {
         return this.http.post<boolean>(`${environment.API_PATH}/site/valid-token`, { jwt });
+    }
+
+    public refreshToken() {
+        return this.http.get<{ token: string, refreshToken: string }>(`${environment.API_PATH}/site/refresh`, {
+            headers: new HttpHeaders().append('Authorization', `Bearer ${this.authUserStore.refreshToken as string}`),
+            context: new HttpContext().set(REFRESHING_TOKEN, true),
+        });
     }
 }

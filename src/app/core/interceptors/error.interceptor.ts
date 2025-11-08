@@ -1,36 +1,38 @@
-import { HttpEvent, HttpHandlerFn, HttpRequest } from "@angular/common/http";
-import { inject } from "@angular/core";
-import { Observable, retry, tap, throwError, timer } from "rxjs";
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpHandlerFn, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { inject, Injectable } from "@angular/core";
+import { catchError, Observable, retry, tap, throwError, timer } from "rxjs";
 import { ApiErrorHandler } from "../services/errorHandler.service";
 
 const MAX_RETRIES = 2;
 const UNABLE_RETRY_ON_STATUS = [400, 401, 403, 404, 429];
 
-export function errorInterceptor(req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> {
-    let observable = next(req);
-    let apiErrorHandler = inject(ApiErrorHandler);
+@Injectable({ providedIn: 'root' })
+export class ErrorInterceptor implements HttpInterceptor {
+    apiErrorHandler = inject(ApiErrorHandler);
 
-    const delay = (error: any, retryCount: number): Observable<never | 0> => {
-        let result: Observable<never | 0>;
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        let observable = next.handle(req);
 
-        if (UNABLE_RETRY_ON_STATUS.includes(error.status))
-            result = throwError(() => error);
+        const delay = (error: any, retryCount: number): Observable<never | 0> => {
+            let result: Observable<never | 0>;
 
-        else result = timer(5000 * retryCount);
+            if (UNABLE_RETRY_ON_STATUS.includes(error.status))
+                result = throwError(() => error);
 
-        return result
+            else result = timer(5000 * retryCount);
+
+            return result
+        }
+
+        observable = observable.pipe(
+            retry({
+                count: MAX_RETRIES,
+                delay
+            }),
+        );
+
+        return observable.pipe(
+            catchError((err) => this.apiErrorHandler.handleError(req, err, next))
+        );
     }
-
-    observable = observable.pipe(
-        retry({
-            count: MAX_RETRIES,
-            delay
-        }),
-    );
-
-    return observable.pipe(
-        tap({
-            error: (err) => apiErrorHandler.handleError(err)
-        })
-    );
 }

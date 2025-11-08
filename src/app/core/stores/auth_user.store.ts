@@ -45,4 +45,18 @@ export class AuthUserStore {
     get token(): string | undefined {
         return this.authState()?.token;
     }
+
+    set tokens(tokens: {token: string, refreshToken: string}) {
+        this.authState.update((value) => {
+            return {
+                user: value!.user,
+                token: tokens.token,
+                refreshToken: tokens.refreshToken
+            }
+        })
+    }
+
+    get refreshToken(): string | undefined {
+        return this.authState()?.refreshToken;
+    }
 }
