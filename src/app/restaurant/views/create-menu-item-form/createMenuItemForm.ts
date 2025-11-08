@@ -12,7 +12,7 @@ import { MenuItemService } from "../../services/menu_item.service";
 
 @Component({
     selector: 'create-menu-item-form',
-    templateUrl: './create-menu-item-form.template.html',
+    templateUrl: './createMenuItemForm.html',
     imports: [
         MatDialogModule,
         MatFormFieldModule,

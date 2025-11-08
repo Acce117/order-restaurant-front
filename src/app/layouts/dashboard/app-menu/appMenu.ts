@@ -10,8 +10,8 @@ import { AppHasRoles } from "../../../auth/directives/appHasRoles";
 @Component({
   selector: 'app-menu',
   imports: [MatListModule, MatIconModule, MatDividerModule, RouterModule, AppHasRoles],
-  templateUrl: './app-menu.html',
-  styleUrl: './app-menu.scss',
+  templateUrl: './appMenu.html',
+  styleUrl: './appMenu.scss',
 })
 export class AppMenu {
   authService = inject(AuthService);

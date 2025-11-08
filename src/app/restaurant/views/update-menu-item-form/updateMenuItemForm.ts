@@ -1,18 +1,17 @@
 import { Component, inject } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MAT_DIALOG_DATA, MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { MenuItemService } from "../../services/menu_item.service";
-import { MatButtonModule } from "@angular/material/button";
-import { MenuItem } from "../../entities/menu_item";
-import { DialogRef } from "@angular/cdk/dialog";
 import { DialogBaseForm } from "../../../core/components/base/form.component";
+import { MenuItem } from "../../entities/menu_item";
+import { MenuItemService } from "../../services/menu_item.service";
 
 @Component({
     selector: 'update-menu-item-form',
-    templateUrl: './update-menu-item-form.template.html',
+    templateUrl: './updateMenuItemForm.html',
     imports: [
         MatDialogModule,
         MatFormFieldModule,

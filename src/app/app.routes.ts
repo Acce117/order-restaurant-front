@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { AuthView } from './layouts/auth/auth.component';
+import { AuthView } from './layouts/auth/auth';
 import { authRoutes } from './auth/routes/routes';
 import { validTokenGuard } from './auth/guards/valid-token-guard';
-import { Dashboard } from './layouts/dashboard/dashboard.component';
+import { Dashboard } from './layouts/dashboard/dashboard';
 import { restaurantRoutes } from './restaurant/routes/routes';
 import { catalogueRoutes } from './catalogue/routes/routes';
 import { Home } from './layouts/home/home';

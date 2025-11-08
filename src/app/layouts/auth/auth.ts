@@ -3,7 +3,7 @@ import { RouterOutlet } from "@angular/router";
 
 @Component({
     selector: 'auth-view',
-    templateUrl: './auth.template.html',
+    templateUrl: './auth.html',
     imports: [RouterOutlet]
 })
 export class AuthView {}

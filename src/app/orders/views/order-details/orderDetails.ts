@@ -4,7 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { firstValueFrom } from "rxjs";
 import { Table } from "../../../core/components/table/table";
 import { OrderService } from "../../services/order.service";
-import { Order } from "../entities/order";
+import { Order } from "../../entities/order";
 import { TableColumn } from "../../../core/components/table/types";
 import { MatButtonModule } from "@angular/material/button";
 

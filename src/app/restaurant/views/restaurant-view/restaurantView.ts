@@ -9,13 +9,13 @@ import { SearchInput } from "../../../core/components/search-input/search-input"
 import { Table } from "../../../core/components/table/table";
 import { Restaurant } from "../../entities/restaurant";
 import { RestaurantService } from "../../services/restaurant.service";
-import { CreateRestaurantForm } from "../create-restaurant-form/create-restaurant-form.component";
-import { UpdateRestaurantForm } from "../update-restaurant-form/update-restaurant-form.component";
+import { CreateRestaurantForm } from "../create-restaurant-form/createRestaurantForm";
+import { UpdateRestaurantForm } from "../update-restaurant-form/updateRestaurantForm";
 
 @Component({
     selector: 'restaurant-view',
-    templateUrl: './restaurant-view.template.html',
-    styleUrl: './restaurant-view.scss',
+    templateUrl: './restaurantView.html',
+    styleUrl: './restaurantView.scss',
     imports: [
         Table,
         MatPaginatorModule,

@@ -3,12 +3,12 @@ import { Header } from "../../core/components/header/header";
 import { RouterLinkWithHref, RouterModule } from "@angular/router";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
-import { AppMenu } from "./app-menu/app-menu";
+import { AppMenu } from "./app-menu/appMenu";
 import { MatMenuItem } from "@angular/material/menu";
 import { CdkNoDataRow } from "@angular/cdk/table";
 @Component({
     selector: 'dashboard',
-    templateUrl: './dashboard.template.html',
+    templateUrl: './dashboard.html',
     styleUrl: './dashboard.scss',
     imports: [Header, MatSidenavModule, AppMenu, RouterModule, MatButtonModule, MatMenuItem]
 })

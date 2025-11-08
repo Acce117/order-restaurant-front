@@ -1,7 +1,6 @@
 import { Routes } from "@angular/router";
-import { RestaurantView } from "../views/restaurant-view/restaurant-view.component";
-import { RestaurantDetails } from "../views/restaurant-details/restaurant-details.component";
-import { isAuthorizedGuard } from "../../auth/guards/is-authorized-guard";
+import { RestaurantDetails } from "../views/restaurant-details/restaurantDetails";
+import { RestaurantView } from "../views/restaurant-view/restaurantView";
 
 export const restaurantRoutes: Routes = [
     {

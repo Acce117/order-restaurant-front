@@ -12,7 +12,7 @@ import { AuthService } from "../../services/auth-service";
 
 @Component({
     selector: 'sign-in',
-    templateUrl: './sing_in.template.html',
+    templateUrl: './singIn.html',
     styleUrl: '../auth.scss',
     imports: [
         ReactiveFormsModule,

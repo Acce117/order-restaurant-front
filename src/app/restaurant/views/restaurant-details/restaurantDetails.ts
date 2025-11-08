@@ -6,11 +6,11 @@ import { ActivatedRoute, RouterModule } from "@angular/router";
 import { firstValueFrom } from "rxjs";
 import { Restaurant } from "../../entities/restaurant";
 import { RestaurantService } from "../../services/restaurant.service";
-import { MenuComponent } from "../menu/menu.component";
+import { MenuComponent } from "../menu/menu";
 
 @Component({
     selector: 'restaurant-details',
-    templateUrl: './restaurant-details.template.html',
+    templateUrl: './restaurantDetails.html',
     imports: [
         RouterModule,
         MatPaginatorModule,

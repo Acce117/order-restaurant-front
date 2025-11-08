@@ -8,12 +8,12 @@ import { SearchInput } from "../../../core/components/search-input/search-input"
 import { Table } from "../../../core/components/table/table";
 import { MenuItem } from "../../entities/menu_item";
 import { MenuItemService } from "../../services/menu_item.service";
-import { CreateMenuItemForm } from "../create-menu-item-form/create-menu-item-form.component";
-import { UpdateMenuItemForm } from "../update-menu-item-form/update-menu-item-form.component";
+import { CreateMenuItemForm } from "../create-menu-item-form/createMenuItemForm";
+import { UpdateMenuItemForm } from "../update-menu-item-form/updateMenuItemForm";
 
 @Component({
     selector: 'menu',
-    templateUrl: './menu.template.html',
+    templateUrl: './menu.html',
     imports: [
         SearchInput,
         Table,

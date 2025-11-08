@@ -11,7 +11,7 @@ import { DialogBaseForm } from "../../../core/components/base/form.component";
 
 @Component({
     selector: 'restaurant-form',
-    templateUrl: './create-restaurant-form.template.html',
+    templateUrl: './createRestaurantForm.html',
     imports: [
         ReactiveFormsModule,
         MatFormFieldModule,

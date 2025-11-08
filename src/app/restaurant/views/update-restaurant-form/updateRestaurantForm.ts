@@ -11,7 +11,7 @@ import { DialogBaseForm } from "../../../core/components/base/form.component";
 
 @Component({
     selector: 'update-restaurant-form',
-    templateUrl: './update-restaurant-form.template.html',
+    templateUrl: './updateRestaurantForm.html',
     imports: [
         MatDialogModule, 
         MatButtonModule, 
