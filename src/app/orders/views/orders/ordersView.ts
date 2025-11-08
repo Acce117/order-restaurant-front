@@ -3,7 +3,6 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { RouterModule } from "@angular/router";
 import { Subject, Subscription, takeUntil } from "rxjs";
 import { BaseDashboardView } from "../../../core/components/base/dashboad-view.component";
-import { SearchInput } from "../../../core/components/search-input/search-input";
 import { Table } from "../../../core/components/table/table";
 import { TableColumn } from "../../../core/components/table/types";
 import { OrderService } from "../../services/order.service";
@@ -13,7 +12,7 @@ import { CurrencyPipe, DatePipe, formatDate } from "@angular/common";
 @Component({
     selector: 'orders',
     templateUrl: './ordersView.html',
-    imports: [SearchInput, Table, RouterModule, MatPaginatorModule, MatButtonModule],
+    imports: [Table, RouterModule, MatPaginatorModule, MatButtonModule],
 })
 export class OrdersView extends BaseDashboardView {
     override service = inject(OrderService);
@@ -27,8 +26,6 @@ export class OrdersView extends BaseDashboardView {
         { name: 'Customer', property: 'customer' },
         { name: 'Status', property: 'status' },
     ]
-
-    searchEntry = signal('');
 
     constructor() {
         super();

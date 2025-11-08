@@ -5,7 +5,6 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { RouterModule } from "@angular/router";
 import { Subject, Subscription, takeUntil } from "rxjs";
 import { BaseDashboardView } from "../../../core/components/base/dashboad-view.component";
-import { SearchInput } from "../../../core/components/search-input/search-input";
 import { Table } from "../../../core/components/table/table";
 import { Restaurant } from "../../entities/restaurant";
 import { RestaurantService } from "../../services/restaurant.service";
@@ -20,7 +19,6 @@ import { UpdateRestaurantForm } from "../update-restaurant-form/updateRestaurant
         Table,
         MatPaginatorModule,
         RouterModule,
-        SearchInput,
         MatButtonModule
     ],
 })
@@ -37,9 +35,6 @@ export class RestaurantView extends BaseDashboardView<Restaurant> {
         { name: 'Address', property: 'address' },
         { name: 'Is active', property: 'active' },
     ]
-
-    //TODO filter
-    searchEntry = signal<string>('');
 
     override dialogOptions: MatDialogConfig = {
         width: '400px',

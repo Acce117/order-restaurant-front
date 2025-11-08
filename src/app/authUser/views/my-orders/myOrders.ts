@@ -1,6 +1,5 @@
 import { Component, inject, signal } from "@angular/core";
 import { BaseDashboardView } from "../../../core/components/base/dashboad-view.component";
-import { SearchInput } from "../../../core/components/search-input/search-input";
 import { Table } from "../../../core/components/table/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { TableColumn } from "../../../core/components/table/types";
@@ -11,7 +10,7 @@ import { ClientService } from "../../servcices/client.service";
 @Component({
     selector: 'my-orders',
     templateUrl: './myOrders.html',
-    imports: [SearchInput, Table, MatPaginatorModule, MatButtonModule]
+    imports: [Table, MatPaginatorModule, MatButtonModule]
 })
 export class MyOrders extends BaseDashboardView {
     override service = inject(ClientService);
@@ -41,6 +40,7 @@ export class MyOrders extends BaseDashboardView {
     override getData(params: any): Subscription {
         return this.service.getMyOrders(params).subscribe((res)=>{
             this.data.set(res.data);
+            this.resultsLength.set(res.count);
         })
     }
 }

@@ -4,7 +4,6 @@ import { MatDialogConfig } from "@angular/material/dialog";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { Subject, Subscription, takeUntil } from "rxjs";
 import { BaseDashboardView } from "../../../core/components/base/dashboad-view.component";
-import { SearchInput } from "../../../core/components/search-input/search-input";
 import { Table } from "../../../core/components/table/table";
 import { MenuItem } from "../../entities/menu_item";
 import { MenuItemService } from "../../services/menu_item.service";
@@ -15,7 +14,6 @@ import { UpdateMenuItemForm } from "../update-menu-item-form/updateMenuItemForm"
     selector: 'menu',
     templateUrl: './menu.html',
     imports: [
-        SearchInput,
         Table,
         MatPaginatorModule,
         MatButtonModule,
@@ -37,9 +35,6 @@ export class MenuComponent extends BaseDashboardView<MenuItem>{
         { name: 'Stock', property: 'stock' },
         { name: 'Is active', property: 'active' },
     ];
-    
-    //TODO filter
-    searchEntry = signal('');
 
     private destroy = new Subject();
 
