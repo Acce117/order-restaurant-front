@@ -9,7 +9,7 @@ import { CurrencyPipe } from "@angular/common";
     templateUrl: './cartItemCard.html',
     imports: [MatButtonModule, CurrencyPipe],
     host: {
-        class: "flex flex-wrap rounded-3xl py-3 px-10 shadow-sm gap-5"
+        class: "flex flex-wrap bg-[var(--mat-sys-surface)] rounded-3xl py-3 px-10 shadow-sm gap-5"
     }
 })
 export class CartItemCard {
