@@ -62,6 +62,7 @@ export class OrdersView extends BaseDashboardView {
             ));
             
             this.data.set(data);
+            this.resultsLength.set(res.count);
         })
     }
 }

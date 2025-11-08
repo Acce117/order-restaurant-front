@@ -67,7 +67,6 @@ export class RestaurantView extends BaseDashboardView<Restaurant> {
             .subscribe((res) => {
                 this.data.set(res.data);
                 this.resultsLength.set(res.count);
-                console.log(this.data());
             });
     }
 }
