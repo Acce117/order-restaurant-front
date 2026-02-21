@@ -3,15 +3,15 @@ import { AuthView } from './layouts/auth/auth';
 import { authRoutes } from './auth/routes/routes';
 import { validTokenGuard } from './auth/guards/valid-token-guard';
 import { Dashboard } from './layouts/dashboard/dashboard';
-import { restaurantRoutes } from './restaurant/routes/routes';
 import { catalogueRoutes } from './catalogue/routes/routes';
 import { Home } from './layouts/home/home';
-import { CartView } from './orders/views/cart/cartView';
-import { OrdersView } from './orders/views/orders/ordersView';
-import { OrderDetails } from './orders/views/order-details/orderDetails';
 import { isAuthorizedGuard } from './auth/guards/is-authorized-guard';
 import { MyOrders } from './authUser/views/my-orders/myOrders';
 import { UserProfile } from './authUser/views/profile/profile';
+import { CartView } from './modules/orders/views/cart/cartView';
+import { restaurantRoutes } from './modules/restaurant/routes/routes';
+import { OrdersView } from './modules/orders/views/orders/ordersView';
+import { OrderDetails } from './modules/orders/views/order-details/orderDetails';
 
 export const routes: Routes = [
     {

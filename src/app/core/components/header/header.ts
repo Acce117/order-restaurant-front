@@ -6,10 +6,10 @@ import { AppStore } from "../../stores/app.store";
 import { AuthService } from "../../../auth/services/auth-service";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatIcon } from "@angular/material/icon";
-import { CartStore } from "../../../orders/store/cartStore";
 import { NotificationComponent } from "../../../notifications/notifications";
 import { AppHasRoles } from "../../../auth/directives/isAuth";
 import { AuthUserStore } from "../../stores/auth_user.store";
+import { CartStore } from "../../../modules/orders/store/cartStore";
 
 @Component({
     selector: 'header[appHeader]',

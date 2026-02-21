@@ -1,8 +1,8 @@
 import { Component, inject, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { MenuItem } from "../../../restaurant/entities/menu_item";
 import { MenuItemCard } from "../../components/menu_item_card/menuItemCard";
 import { CatalogueService } from "../../services/catalogue.service";
+import { MenuItem } from "../../../modules/restaurant/entities/menu_item";
 
 @Component({
     selector: 'menu-catalogue',

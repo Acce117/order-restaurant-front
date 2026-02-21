@@ -1,10 +1,10 @@
 import { Component, inject, input } from "@angular/core";
 import { MatCardModule } from "@angular/material/card";
-import { MenuItem } from "../../../restaurant/entities/menu_item";
 import { CurrencyPipe } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
-import { CartStore } from "../../../orders/store/cartStore";
 import { AppHasRoles } from "../../../auth/directives/isAuth";
+import { MenuItem } from "../../../modules/restaurant/entities/menu_item";
+import { CartStore } from "../../../modules/orders/store/cartStore";
 
 @Component({
     selector: 'menu-item-card',
