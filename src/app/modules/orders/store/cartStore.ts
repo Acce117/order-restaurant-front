@@ -75,6 +75,7 @@ export class CartStore {
                 menuItemId: item.id
             }))
         }).subscribe(() => {
+            localStorage.removeItem('cart');
             this.cart.set(null);
         });
     }
