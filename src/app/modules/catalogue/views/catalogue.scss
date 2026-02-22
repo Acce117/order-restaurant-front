@@ -4,8 +4,8 @@ h1 {
 
 section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minMax(300px, 1fr));
-    gap: 45px;
+    grid-template-columns: repeat(auto-fit, minMax(200px, 1fr));
+    gap: 60px;
     justify-content: center;
 }
 
