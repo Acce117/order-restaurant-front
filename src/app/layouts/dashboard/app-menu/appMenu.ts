@@ -3,9 +3,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../../auth/services/auth-service';
-import { AppHasRoles } from "../../../auth/directives/appHasRoles";
-
+import { AppHasRoles } from '../../../core/directives/appHasRoles';
+import { AuthService } from '../../../modules/auth/services/auth-service';
 
 @Component({
   selector: 'app-menu',

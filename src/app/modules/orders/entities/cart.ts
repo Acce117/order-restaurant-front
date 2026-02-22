@@ -4,7 +4,7 @@ export type CartItem = MenuItem & { qty: number };
 export class Cart {
     items: CartItem[] = [];
 
-    constructor() { }
+    constructor(readonly restaurantId: number) { }
 
     totalValue() {
         return this.items.reduce((sum, item) => sum + item.price * item.qty, 0);

@@ -1,6 +1,6 @@
 <div class="lg:px-[20%] md:px-[10%]">
-    <section class="flex justify-end w-[100%]">
-        <p>{{ cartStore.total() }}</p>
+    <section class="flex justify-end w-[100%] mb-13">
+        <p class="bg-[var(--mat-sys-surface)] rounded-3xl py-3 px-10 shadow-sm">{{ cartStore.total() | currency }}</p>
     </section>
     <section class="grid grid-col-1 items-center gap-5 mb-13 w-[100%]">
         @for (item of cartStore.cart()?.items; track item.id) {

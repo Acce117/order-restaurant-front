@@ -1,7 +1,7 @@
 import { HttpContextToken, HttpEvent, HttpHandlerFn, HttpRequest } from "@angular/common/http";
 import { inject } from "@angular/core";
 import { Observable } from "rxjs";
-import { AuthUserStore } from "../../core/stores/auth_user.store";
+import { AuthUserStore } from "../stores/auth_user.store";
 
 export const REFRESHING_TOKEN = new HttpContextToken<boolean>(() => false);
 

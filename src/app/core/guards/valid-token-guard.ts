@@ -1,9 +1,9 @@
 import { inject } from "@angular/core";
 import { ActivatedRouteSnapshot, GuardResult, MaybeAsync, Router, RouterStateSnapshot } from "@angular/router";
 import { map } from "rxjs";
-import { AuthUserStore } from "../../core/stores/auth_user.store";
-import { AuthService } from "../services/auth-service";
-import { AppStore } from "../../core/stores/app.store";
+import { AuthService } from "../../modules/auth/services/auth-service";
+import { AuthUserStore } from "../stores/auth_user.store";
+import { AppStore } from "../stores/app.store";
 
 export function validTokenGuard (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
     const router = inject(Router);

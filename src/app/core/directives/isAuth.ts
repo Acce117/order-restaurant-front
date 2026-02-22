@@ -1,11 +1,12 @@
 
 import { Directive, effect, inject, TemplateRef, ViewContainerRef } from "@angular/core";
-import { AuthUserStore } from "../../core/stores/auth_user.store";
+import { AuthUserStore } from "../stores/auth_user.store";
+
 
 @Directive({
     selector: '[isAuth]'
 })
-export class AppHasRoles {
+export class IsAuth {
     private templateRef = inject(TemplateRef);
     private viewContainerRef = inject(ViewContainerRef);
 

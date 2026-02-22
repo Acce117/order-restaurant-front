@@ -2,13 +2,13 @@ import { HttpClient, HttpContext, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { tap } from "rxjs";
-import { environment } from "../../../environments/environment";
 import { AuthCredentials } from "../entities/auth_credentials.entity";
 import { SignInCredentials } from "../entities/sign_in_credentials.entity";
-import { AuthUserStore } from "../../core/stores/auth_user.store";
-import { IService } from "../../core/services/service";
-import { AppStore } from "../../core/stores/app.store";
-import { REFRESHING_TOKEN } from "../interceptors/auth-jwt.interceptor";
+import { REFRESHING_TOKEN } from "../../../core/interceptors/auth-jwt.interceptor";
+import { IService } from "../../../core/services/service";
+import { AppStore } from "../../../core/stores/app.store";
+import { AuthUserStore } from "../../../core/stores/auth_user.store";
+import { environment } from "../../../../environments/environment";
 
 interface AuthResponse {
     token: string,

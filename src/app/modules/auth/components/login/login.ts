@@ -5,10 +5,10 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Router, RouterLink } from "@angular/router";
-import { BaseForm } from "../../../core/components/base/form.component";
-import { AppStore } from "../../../core/stores/app.store";
 import { AuthCredentials } from "../../entities/auth_credentials.entity";
 import { AuthService } from "../../services/auth-service";
+import { BaseForm } from "../../../../core/components/base/form.component";
+import { AppStore } from "../../../../core/stores/app.store";
 
 @Component({
     selector: 'login',

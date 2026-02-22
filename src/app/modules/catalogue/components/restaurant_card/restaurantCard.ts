@@ -1,6 +1,6 @@
 import { Component, input } from "@angular/core";
 import { MatCardModule } from "@angular/material/card";
-import { Restaurant } from "../../../modules/restaurant/entities/restaurant";
+import { Restaurant } from "../../../restaurant/entities/restaurant";
 
 @Component({
     selector: 'restaurant-card',

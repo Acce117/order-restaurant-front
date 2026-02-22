@@ -6,6 +6,7 @@ import { TableColumn } from "../../../core/components/table/types";
 import { MatButtonModule } from "@angular/material/button";
 import { Subject, Subscription, takeUntil } from "rxjs";
 import { ClientService } from "../../servcices/client.service";
+import { CurrencyPipe, DatePipe } from "@angular/common";
 
 @Component({
     selector: 'my-orders',
@@ -17,8 +18,8 @@ export class MyOrders extends BaseDashboardView {
     searchEntry = signal('');
     
     override tableColumns: TableColumn[] = [
-        { name: 'Total', property: 'total' },
-        { name: 'Created at', property: 'createdAt' },
+        { name: 'Total', property: 'total', pipe: new CurrencyPipe('en-Us') },
+        { name: 'Created at', property: 'createdAt', pipe: new DatePipe('en-Us') },
         { name: 'Restaurant', property: 'restaurantId' },
         { name: 'Status', property: 'status' },
     ]

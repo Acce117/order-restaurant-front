@@ -3,9 +3,8 @@ import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { MessageOptions, MessageService } from "./message.service";
 import { AuthUserStore } from "../stores/auth_user.store";
-import { REFRESHING_TOKEN } from "../../auth/interceptors/auth-jwt.interceptor";
-import { AuthService } from "../../auth/services/auth-service";
 import { catchError, Observable, of, switchMap, tap, throwError } from "rxjs";
+import { AuthService } from "../../modules/auth/services/auth-service";
 
 @Injectable({ providedIn: 'root' })
 export class ApiErrorHandler {
@@ -20,36 +19,36 @@ export class ApiErrorHandler {
             type: 'error',
         }
 
-        if (error.status === 401) {
-            const isRefreshing = req.context.get(REFRESHING_TOKEN);
+        // if (error.status === 401) {
+        //     const isRefreshing = req.context.get(REFRESHING_TOKEN);
 
-            if (!isRefreshing) {
-                return this.authService.refreshToken()
-                    .pipe(
-                        switchMap((res) => {
-                            this.authUserStore.tokens = res;
+        //     if (!isRefreshing) {
+        //         return this.authService.refreshToken()
+        //             .pipe(
+        //                 switchMap((res) => {
+        //                     this.authUserStore.tokens = res;
 
-                            const headerConfig = {
-                                'Authorization': `Bearer ${res.token}`,
-                                'Content-Type': 'application/json'
-                            };
+        //                     const headerConfig = {
+        //                         'Authorization': `Bearer ${res.token}`,
+        //                         'Content-Type': 'application/json'
+        //                     };
 
-                            req = req.clone({ setHeaders: headerConfig });
+        //                     req = req.clone({ setHeaders: headerConfig });
 
-                            return next.handle(req);
-                        }
-                        ),
-                        catchError((err) => {
-                            this.messageService.showMessage(message);
-                            return throwError(() => err);
-                        })
-                    );
-            }
-        }
-        else if (error.status === 403) {
-            this.authUserStore.state = null;
-            this.router.navigate(['/auth']);
-        }
+        //                     return next.handle(req);
+        //                 }
+        //                 ),
+        //                 catchError((err) => {
+        //                     this.messageService.showMessage(message);
+        //                     return throwError(() => err);
+        //                 })
+        //             );
+        //     }
+        // }
+        // else if (error.status === 403) {
+        //     this.authUserStore.state = null;
+        //     this.router.navigate(['/auth']);
+        // }
 
         return throwError(() => error);
     }

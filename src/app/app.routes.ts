@@ -1,17 +1,17 @@
 import { Routes } from '@angular/router';
 import { AuthView } from './layouts/auth/auth';
-import { authRoutes } from './auth/routes/routes';
-import { validTokenGuard } from './auth/guards/valid-token-guard';
 import { Dashboard } from './layouts/dashboard/dashboard';
-import { catalogueRoutes } from './catalogue/routes/routes';
+import { catalogueRoutes } from './modules/catalogue/routes/routes';
 import { Home } from './layouts/home/home';
-import { isAuthorizedGuard } from './auth/guards/is-authorized-guard';
 import { MyOrders } from './authUser/views/my-orders/myOrders';
 import { UserProfile } from './authUser/views/profile/profile';
 import { CartView } from './modules/orders/views/cart/cartView';
 import { restaurantRoutes } from './modules/restaurant/routes/routes';
 import { OrdersView } from './modules/orders/views/orders/ordersView';
 import { OrderDetails } from './modules/orders/views/order-details/orderDetails';
+import { validTokenGuard } from './core/guards/valid-token-guard';
+import { isAuthorizedGuard } from './core/guards/is-authorized-guard';
+import { authRoutes } from './modules/auth/routes/routes';
 
 export const routes: Routes = [
     {

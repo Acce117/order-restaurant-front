@@ -2,9 +2,9 @@ import { Component, inject, input } from "@angular/core";
 import { MatCardModule } from "@angular/material/card";
 import { CurrencyPipe } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
-import { AppHasRoles } from "../../../auth/directives/isAuth";
-import { MenuItem } from "../../../modules/restaurant/entities/menu_item";
-import { CartStore } from "../../../modules/orders/store/cartStore";
+import { MenuItem } from "../../../restaurant/entities/menu_item";
+import { CartStore } from "../../../orders/store/cartStore";
+import { IsAuth } from "../../../../core/directives/isAuth";
 
 @Component({
     selector: 'menu-item-card',
@@ -13,7 +13,7 @@ import { CartStore } from "../../../modules/orders/store/cartStore";
     MatCardModule,
     CurrencyPipe,
     MatButtonModule,
-    AppHasRoles
+    IsAuth
 ]
 })
 export class MenuItemCard {

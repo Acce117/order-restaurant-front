@@ -2,7 +2,7 @@ import { Component, inject, signal } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { RestaurantCard } from "../../components/restaurant_card/restaurantCard";
 import { CatalogueService } from "../../services/catalogue.service";
-import { Restaurant } from "../../../modules/restaurant/entities/restaurant";
+import { Restaurant } from "../../../restaurant/entities/restaurant";
 
 @Component({
     selector: 'restaurant-catalogue',
