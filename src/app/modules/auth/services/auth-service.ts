@@ -4,11 +4,11 @@ import { Router } from "@angular/router";
 import { tap } from "rxjs";
 import { AuthCredentials } from "../entities/auth_credentials.entity";
 import { SignInCredentials } from "../entities/sign_in_credentials.entity";
-import { REFRESHING_TOKEN } from "../../../core/interceptors/auth-jwt.interceptor";
 import { IService } from "../../../core/services/service";
 import { AppStore } from "../../../core/stores/app.store";
 import { AuthUserStore } from "../../../core/stores/auth_user.store";
 import { environment } from "../../../../environments/environment";
+import { TRY_REFRESH } from "../../../core/interceptors/auth-jwt.interceptor";
 
 interface AuthResponse {
     token: string,
@@ -25,7 +25,11 @@ export class AuthService implements IService {
     private authUserStore = inject(AuthUserStore);
 
     public login(credentials: AuthCredentials) {
-        return this.http.post<AuthResponse>(`${environment.API_PATH}/site/login`, credentials).pipe(
+        return this.http.post<AuthResponse>(`${environment.API_PATH}/site/login`, credentials,
+            {
+                context: new HttpContext().set(TRY_REFRESH, false),
+            }
+        ).pipe(
             tap((res) => this.authUserStore.state = res)
         );
     }
@@ -52,7 +56,7 @@ export class AuthService implements IService {
     public refreshToken() {
         return this.http.get<{ token: string, refreshToken: string }>(`${environment.API_PATH}/site/refresh`, {
             headers: new HttpHeaders().append('Authorization', `Bearer ${this.authUserStore.refreshToken as string}`),
-            context: new HttpContext().set(REFRESHING_TOKEN, true),
+            context: new HttpContext().set(TRY_REFRESH, false),
         });
     }
 }

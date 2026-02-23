@@ -2,12 +2,14 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/c
 import { inject, Injectable } from "@angular/core";
 import { catchError, Observable, retry, throwError, timer } from "rxjs";
 import { MessageOptions, MessageService } from "../services/message.service";
+import { ApiErrorHandler } from "../services/errorHandler.service";
 
 const MAX_RETRIES = 2;
 const UNABLE_RETRY_ON_STATUS = [400, 401, 403, 404, 429];
 
 @Injectable({ providedIn: 'root' })
 export class ErrorInterceptor implements HttpInterceptor {
+    errorHandler = inject(ApiErrorHandler);
     messageService = inject(MessageService);
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -37,8 +39,9 @@ export class ErrorInterceptor implements HttpInterceptor {
                     message: err.message,
                     type: 'error',
                 }
+
                 this.messageService.showMessage(message);
-                return throwError(() => err);
+                return this.errorHandler.handleError(req, err, next);
             })
         );
     }

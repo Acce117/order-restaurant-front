@@ -1,10 +1,11 @@
-import { HttpErrorResponse, HttpHandler, HttpHandlerFn, HttpHeaders, HttpRequest } from "@angular/common/http";
+import { HttpErrorResponse, HttpHandler, HttpRequest } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { MessageOptions, MessageService } from "./message.service";
-import { AuthUserStore } from "../stores/auth_user.store";
-import { catchError, Observable, of, switchMap, tap, throwError } from "rxjs";
+import { catchError, Observable, switchMap, throwError } from "rxjs";
 import { AuthService } from "../../modules/auth/services/auth-service";
+import { TRY_REFRESH } from "../interceptors/auth-jwt.interceptor";
+import { AuthUserStore } from "../stores/auth_user.store";
+import { MessageOptions, MessageService } from "./message.service";
 
 @Injectable({ providedIn: 'root' })
 export class ApiErrorHandler {
@@ -19,36 +20,35 @@ export class ApiErrorHandler {
             type: 'error',
         }
 
-        // if (error.status === 401) {
-        //     const isRefreshing = req.context.get(REFRESHING_TOKEN);
+        if (error.status === 401) {
+            const tryRefresh = req.context.get(TRY_REFRESH);
 
-        //     if (!isRefreshing) {
-        //         return this.authService.refreshToken()
-        //             .pipe(
-        //                 switchMap((res) => {
-        //                     this.authUserStore.tokens = res;
+            if (tryRefresh) {
+                return this.authService.refreshToken()
+                    .pipe(
+                        switchMap((res) => {
+                            this.authUserStore.tokens = res;
 
-        //                     const headerConfig = {
-        //                         'Authorization': `Bearer ${res.token}`,
-        //                         'Content-Type': 'application/json'
-        //                     };
+                            const headerConfig = {
+                                'Authorization': `Bearer ${res.token}`,
+                                'Content-Type': 'application/json'
+                            };
 
-        //                     req = req.clone({ setHeaders: headerConfig });
+                            req = req.clone({ setHeaders: headerConfig });
 
-        //                     return next.handle(req);
-        //                 }
-        //                 ),
-        //                 catchError((err) => {
-        //                     this.messageService.showMessage(message);
-        //                     return throwError(() => err);
-        //                 })
-        //             );
-        //     }
-        // }
-        // else if (error.status === 403) {
-        //     this.authUserStore.state = null;
-        //     this.router.navigate(['/auth']);
-        // }
+                            return next.handle(req);
+                        }
+                        ),
+                        catchError((err) => {
+                            return throwError(() => err);
+                        })
+                    );
+            }
+        }
+        else if (error.status === 403) {
+            this.authUserStore.state = null;
+            this.router.navigate(['/auth']);
+        }
 
         return throwError(() => error);
     }
